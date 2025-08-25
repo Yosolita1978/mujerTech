@@ -263,12 +263,133 @@ const weeklyContent = [
     }
 ];
 
+const pricingPlans = [
+    {
+        id: 'estudiantes',
+        name: 'Plan Estudiantes',
+        target: 'Estudiantes universitarios y personas al inicio de su carrera',
+        badge: 'Más Accesible',
+        badgeClass: 'badge-accessible',
+        priceCOP: {
+            monthly: '27,500',
+            originalMonthly: '35,000',
+            annual: '275,000',
+            originalAnnual: '420,000'
+        },
+        priceUSD: {
+            monthly: '7',
+            originalMonthly: '9',
+            annual: '70',
+            originalAnnual: '105'
+        },
+        savings: '35% descuento anual',
+        features: [
+            'Acceso completo al programa de 16 semanas',
+            'Micro-cursos complementarios incluidos',
+            'Comunidad exclusiva de estudiantes',
+            'Descuentos adicionales por referidos',
+            'Pagos flexibles vía PSE',
+            'Soporte vía WhatsApp',
+            'Certificado digital al finalizar'
+        ],
+        bonuses: [
+            '🎁 Kit de plantillas para emprendedoras',
+            '📚 Biblioteca digital de recursos',
+            '👥 Sesiones grupales de networking'
+        ],
+        paymentOptions: 'PSE, billeteras digitales, créditos por referidos',
+        cta: 'Comenzar como Estudiante',
+        ctaClass: 'cta-estudiantes',
+        popular: false
+    },
+    {
+        id: 'profesionales',
+        name: 'Plan Profesionales',
+        target: 'Profesionales en actividad y aprendices continuos',
+        badge: 'Más Popular',
+        badgeClass: 'badge-popular',
+        priceCOP: {
+            monthly: '65,000',
+            originalMonthly: '80,000',
+            annual: '650,000',
+            originalAnnual: '960,000'
+        },
+        priceUSD: {
+            monthly: '16',
+            originalMonthly: '20',
+            annual: '162',
+            originalAnnual: '240'
+        },
+        savings: '32% descuento anual',
+        features: [
+            'Todo lo del Plan Estudiantes',
+            'Mentorías 1:1 mensuales (4 sesiones)',
+            'Acceso prioritario a eventos especiales',
+            'Paquetes de especialización incluidos',
+            'Descuentos dúo/familia disponibles',
+            'Pagos a plazos sin intereses',
+            'Certificado profesional con verificación'
+        ],
+        bonuses: [
+            '🚀 Sesión estratégica 1:1 al inicio',
+            '📈 Análisis personalizado de tu negocio',
+            '🤝 Acceso a red de mentoras expertas',
+            '💼 Plantillas avanzadas de negocio'
+        ],
+        paymentOptions: 'Todos los métodos + pagos a plazos sin intereses',
+        cta: 'Impulsar mi Carrera',
+        ctaClass: 'cta-profesionales',
+        popular: true
+    },
+    {
+        id: 'premium',
+        name: 'Plan Premium',
+        target: 'Adultos que buscan certificaciones y empresas',
+        badge: 'Todo Incluido',
+        badgeClass: 'badge-premium',
+        priceCOP: {
+            monthly: '125,000',
+            originalMonthly: '150,000',
+            annual: '1,250,000',
+            originalAnnual: '1,800,000'
+        },
+        priceUSD: {
+            monthly: '31',
+            originalMonthly: '38',
+            annual: '312',
+            originalAnnual: '450'
+        },
+        savings: '31% descuento anual',
+        features: [
+            'Todo lo del Plan Profesionales',
+            'Programa intensivo con certificación oficial',
+            'Mentoría semanal 1:1 (16 sesiones)',
+            'Servicios de carrera y colocación laboral',
+            'Acceso VIP a eventos y conferencias',
+            'Paquetes corporativos disponibles',
+            'Financiamiento "Estudia Ahora, Paga Después"'
+        ],
+        bonuses: [
+            '🏆 Certificación reconocida internacionalmente',
+            '💰 Garantía de ROI: recupera tu inversión',
+            '🌟 Mentora personal durante 6 meses',
+            '🔥 Programa acelerado de lanzamiento',
+            '💪 Soporte post-graduación por 1 año'
+        ],
+        paymentOptions: 'Todos + financiamiento sin intereses inicial + opciones corporativas',
+        cta: 'Acelerar mi Éxito',
+        ctaClass: 'cta-premium',
+        popular: false
+    }
+];
+
+let currentCurrency = 'cop';
+
 function generateWeekContent() {
     const container = document.getElementById('weeksContainer');
     const nav = document.getElementById('weekNav');
     
     weeklyContent.forEach((week, index) => {
-        // Create week card
         const weekCard = document.createElement('div');
         weekCard.className = 'week-card fade-in';
         weekCard.style.animationDelay = `${index * 0.1}s`;
@@ -320,7 +441,6 @@ function generateWeekContent() {
         
         container.appendChild(weekCard);
         
-        // Create navigation item (only for desktop)
         if (window.innerWidth > 768) {
             const navItem = document.createElement('div');
             navItem.className = 'week-nav-item';
@@ -331,11 +451,82 @@ function generateWeekContent() {
     });
 }
 
+function generatePricingContent() {
+    const container = document.getElementById('pricingContainer');
+    
+    pricingPlans.forEach((plan, index) => {
+        const planCard = document.createElement('div');
+        planCard.className = `pricing-card fade-in ${plan.popular ? 'popular' : ''}`;
+        planCard.style.animationDelay = `${index * 0.2}s`;
+        planCard.id = `plan-${plan.id}`;
+        
+        const currency = currentCurrency === 'cop' ? plan.priceCOP : plan.priceUSD;
+        const currencySymbol = currentCurrency === 'cop' ? '$' : '$';
+        const currencyCode = currentCurrency === 'cop' ? 'COP' : 'USD';
+        
+        planCard.innerHTML = `
+            <div class="plan-header" onclick="togglePlan('${plan.id}')">
+                <div class="plan-badge ${plan.badgeClass}">${plan.badge}</div>
+                <div class="plan-name">${plan.name}</div>
+                <div class="plan-target">${plan.target}</div>
+                <div class="plan-pricing">
+                    <div class="price-main">
+                        <span class="price-currency">${currencySymbol}</span>
+                        <span class="price-amount" id="price-${plan.id}">${currency.monthly}</span>
+                        <span class="price-period">/${currencyCode}/mes</span>
+                    </div>
+                    <div class="price-original">
+                        Antes: ${currencySymbol}${currency.originalMonthly} ${currencyCode}/mes
+                    </div>
+                    <div class="price-annual" id="annual-${plan.id}">
+                        Plan anual: ${currencySymbol}${currency.annual} ${currencyCode} (${plan.savings})
+                    </div>
+                </div>
+                <span class="expand-icon" id="icon-plan-${plan.id}">Ver Detalles</span>
+            </div>
+            <div class="plan-content" id="content-plan-${plan.id}">
+                <div class="plan-details">
+                    <div class="plan-features">
+                        <div class="section-title">✅ Qué Incluye</div>
+                        <div class="section-content">
+                            <ul>
+                                ${plan.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-bonuses">
+                        <div class="section-title">🎁 Bonos Especiales</div>
+                        <div class="section-content">
+                            <ul>
+                                ${plan.bonuses.map(bonus => `<li>${bonus}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-payment">
+                        <div class="section-title">💳 Opciones de Pago</div>
+                        <div class="section-content">${plan.paymentOptions}</div>
+                    </div>
+                    
+                    <div class="plan-cta">
+                        <button class="cta-button ${plan.ctaClass}" onclick="selectPlan('${plan.id}')">
+                            ${plan.cta}
+                        </button>
+                        <p class="guarantee">✅ Garantía de reembolso 7 días</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(planCard);
+    });
+}
+
 function toggleWeek(weekNumber) {
     const content = document.getElementById(`content-${weekNumber}`);
     const icon = document.getElementById(`icon-${weekNumber}`);
     
-    // Close other open weeks on mobile for better performance
     if (window.innerWidth <= 768) {
         document.querySelectorAll('.week-content.expanded').forEach(otherContent => {
             if (otherContent.id !== `content-${weekNumber}`) {
@@ -358,7 +549,6 @@ function toggleWeek(weekNumber) {
         icon.textContent = '−';
         icon.style.transform = 'rotate(180deg)';
         
-        // Smooth scroll to week header on mobile
         if (window.innerWidth <= 768) {
             setTimeout(() => {
                 document.getElementById(`week-${weekNumber}`).scrollIntoView({ 
@@ -370,11 +560,102 @@ function toggleWeek(weekNumber) {
     }
 }
 
+function togglePlan(planId) {
+    const content = document.getElementById(`content-plan-${planId}`);
+    const icon = document.getElementById(`icon-plan-${planId}`);
+    
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.plan-content.expanded').forEach(otherContent => {
+            if (otherContent.id !== `content-plan-${planId}`) {
+                otherContent.classList.remove('expanded');
+                const otherIcon = document.getElementById(otherContent.id.replace('content-plan-', 'icon-plan-'));
+                if (otherIcon) {
+                    otherIcon.textContent = 'Ver Detalles';
+                }
+            }
+        });
+    }
+    
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        icon.textContent = 'Ver Detalles';
+    } else {
+        content.classList.add('expanded');
+        icon.textContent = 'Ocultar Detalles';
+        
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                document.getElementById(`plan-${planId}`).scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+        }
+    }
+}
+
+function switchCurrency(currency) {
+    if (currentCurrency === currency) return;
+    
+    currentCurrency = currency;
+    
+    document.getElementById('copBtn').classList.toggle('active', currency === 'cop');
+    document.getElementById('usdBtn').classList.toggle('active', currency === 'usd');
+    
+    pricingPlans.forEach(plan => {
+        const priceData = currency === 'cop' ? plan.priceCOP : plan.priceUSD;
+        const symbol = '$';
+        const code = currency === 'cop' ? 'COP' : 'USD';
+        
+        const priceElement = document.getElementById(`price-${plan.id}`);
+        const annualElement = document.getElementById(`annual-${plan.id}`);
+        const periodElements = document.querySelectorAll(`#plan-${plan.id} .price-period`);
+        const originalElements = document.querySelectorAll(`#plan-${plan.id} .price-original`);
+        
+        if (priceElement) {
+            priceElement.textContent = priceData.monthly;
+        }
+        
+        if (annualElement) {
+            annualElement.innerHTML = `Plan anual: ${symbol}${priceData.annual} ${code} (${plan.savings})`;
+        }
+        
+        periodElements.forEach(el => {
+            el.textContent = `/${code}/mes`;
+        });
+        
+        originalElements.forEach(el => {
+            el.textContent = `Antes: ${symbol}${priceData.originalMonthly} ${code}/mes`;
+        });
+    });
+}
+
+function selectPlan(planId) {
+    const plan = pricingPlans.find(p => p.id === planId);
+    const currency = currentCurrency === 'cop' ? 'COP' : 'USD';
+    const price = currentCurrency === 'cop' ? plan.priceCOP.monthly : plan.priceUSD.monthly;
+    
+    const message = `¡Hola! Me interesa el ${plan.name} 🚀\n\n` +
+                   `💰 Precio: $${price} ${currency}/mes\n` +
+                   `📚 Programa: 16 semanas de transformación empresarial\n\n` +
+                   `¿Podrían darme más información sobre:\n` +
+                   `• Próximas fechas de inicio\n` +
+                   `• Proceso de inscripción\n` +
+                   `• Opciones de pago disponibles?\n\n` +
+                   `¡Estoy lista para transformar mi negocio con MujerTech! 💪`;
+    
+    if (window.innerWidth <= 768) {
+        const whatsappUrl = `https://wa.me/573000000000?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    } else {
+        alert(`¡Genial elección! ${plan.name} seleccionado.\n\nEn la versión real, esto:\n• Abriría WhatsApp con mensaje pre-escrito\n• Redirigiría al formulario de inscripción\n• Iniciaría el proceso de pago\n\nPrecio: $${price} ${currency}/mes`);
+    }
+}
+
 function scrollToWeek(weekNumber) {
     const weekElement = document.getElementById(`week-${weekNumber}`);
     weekElement.scrollIntoView({ behavior: 'smooth' });
     
-    // Update active nav item
     document.querySelectorAll('.week-nav-item').forEach(item => {
         item.classList.remove('active');
     });
@@ -387,7 +668,6 @@ function updateProgressBar() {
 }
 
 function showInterestForm() {
-    // Better mobile experience for the interest form
     if (window.innerWidth <= 768) {
         const message = '¡Gracias por tu interés en MujerTech! 🚀\n\n' +
                        'Te redirigiremos al formulario de inscripción.\n\n' +
@@ -397,21 +677,19 @@ function showInterestForm() {
                        '• Calendario para agendar llamada';
         alert(message);
     } else {
-        alert('¡Gracias por tu interés! Te redirigiremos al formulario de inscripción.\n\nEn la versión real, esto abriría un formulario de contacto o te llevaría a la página de inscripciones.');
+        document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
     }
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', function() {
     generateWeekContent();
+    generatePricingContent();
+    
     window.addEventListener('scroll', updateProgressBar);
     
-    // Mobile-specific optimizations
     if (window.innerWidth <= 768) {
-        // Improve touch responsiveness
         document.addEventListener('touchstart', function() {}, { passive: true });
         
-        // Optimize scroll performance on mobile
         let ticking = false;
         function updateScrollProgress() {
             updateProgressBar();
@@ -428,7 +706,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', updateProgressBar);
     }
     
-    // Optimize animations based on device performance
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
         document.documentElement.style.setProperty('--animation-duration', '0s');
