@@ -265,119 +265,160 @@ const weeklyContent = [
 
 const pricingPlans = [
     {
+        id: 'mujeres',
+        name: 'Mujeres con Futuro',
+        target: 'Fundadoras, empresarias consolidadas y mujeres jefas de hogar',
+        badge: '¡Más Popular! 💜',
+        badgeClass: 'badge-mujeres',
+        priceCOP: {
+            monthly: '8,000',
+            originalMonthly: '20,000',
+            annual: '80,000',
+            originalAnnual: '240,000'
+        },
+        priceUSD: {
+            monthly: '2',
+            originalMonthly: '5',
+            annual: '20',
+            originalAnnual: '60'
+        },
+        savings: 'Hasta 60% descuento + beneficios exclusivos',
+        features: [
+            'Acceso completo al programa de 16 semanas',
+            'Becas y descuentos preferenciales',
+            'Mentoría dirigida por mujeres líderes',
+            'Microcrédito o pago diferido disponible',
+            'Kit de digitalización incluido',
+            'Apoyo integral al bienestar',
+            'Acceso exclusivo a bolsa de empleo'
+        ],
+        bonuses: [
+            '👩‍💼 Red exclusiva de mujeres emprendedoras',
+            '💜 Sesiones de empoderamiento y liderazgo',
+            '🏠 Flexibilidad para madres trabajadoras',
+            '💰 Asesoría financiera personalizada',
+            '🌟 Programa de mentoras exitosas'
+        ],
+        paymentOptions: 'Microcrédito, pago diferido, PSE, becas disponibles',
+        cta: '¡Únete a Mujeres con Futuro!',
+        ctaClass: 'cta-mujeres',
+        popular: true
+    },
+    {
         id: 'estudiantes',
-        name: 'Plan Estudiantes',
+        name: 'Plan Económico',
         target: 'Estudiantes universitarios y personas al inicio de su carrera',
         badge: 'Más Accesible',
         badgeClass: 'badge-accessible',
         priceCOP: {
-            monthly: '27,500',
+            monthly: '20,000',
             originalMonthly: '35,000',
-            annual: '275,000',
+            annual: '200,000',
             originalAnnual: '420,000'
         },
         priceUSD: {
-            monthly: '7',
+            monthly: '5',
             originalMonthly: '9',
-            annual: '70',
+            annual: '50',
             originalAnnual: '105'
         },
-        savings: '35% descuento anual',
+        savings: 'Nivel freemium disponible',
         features: [
-            'Acceso completo al programa de 16 semanas',
-            'Micro-cursos complementarios incluidos',
-            'Comunidad exclusiva de estudiantes',
-            'Descuentos adicionales por referidos',
+            'Nivel freemium con contenido básico',
+            'Micro-cursos de pago por clase',
+            'Descuentos especiales para estudiantes',
+            'Créditos por referidos',
             'Pagos flexibles vía PSE',
-            'Soporte vía WhatsApp',
+            'Billeteras digitales aceptadas',
             'Certificado digital al finalizar'
         ],
         bonuses: [
-            '🎁 Kit de plantillas para emprendedoras',
+            '🎓 Descuentos estudiantiles adicionales',
             '📚 Biblioteca digital de recursos',
-            '👥 Sesiones grupales de networking'
+            '👥 Comunidad de estudiantes',
+            '💡 Contenido freemium permanente'
         ],
-        paymentOptions: 'PSE, billeteras digitales, créditos por referidos',
+        paymentOptions: 'PSE, billeteras digitales, créditos por referidos, freemium',
         cta: 'Comenzar como Estudiante',
         ctaClass: 'cta-estudiantes',
         popular: false
     },
     {
         id: 'profesionales',
-        name: 'Plan Profesionales',
+        name: 'Plan Intermedio',
         target: 'Profesionales en actividad y aprendices continuos',
-        badge: 'Más Popular',
-        badgeClass: 'badge-popular',
+        badge: 'Profesional',
+        badgeClass: 'badge-profesional',
         priceCOP: {
-            monthly: '65,000',
+            monthly: '50,000',
             originalMonthly: '80,000',
-            annual: '650,000',
+            annual: '500,000',
             originalAnnual: '960,000'
         },
         priceUSD: {
-            monthly: '16',
+            monthly: '12',
             originalMonthly: '20',
-            annual: '162',
+            annual: '125',
             originalAnnual: '240'
         },
-        savings: '32% descuento anual',
+        savings: 'Planes anuales con mayor ahorro',
         features: [
-            'Todo lo del Plan Estudiantes',
-            'Mentorías 1:1 mensuales (4 sesiones)',
-            'Acceso prioritario a eventos especiales',
+            'Todo lo del Plan Económico',
+            'Planes anuales con descuentos',
+            'Descuentos para dúo/familia',
             'Paquetes de especialización incluidos',
-            'Descuentos dúo/familia disponibles',
-            'Pagos a plazos sin intereses',
-            'Certificado profesional con verificación'
+            'Opciones de pago a plazos',
+            'Pago con PSE o tarjeta',
+            'Certificado profesional verificado'
         ],
         bonuses: [
-            '🚀 Sesión estratégica 1:1 al inicio',
-            '📈 Análisis personalizado de tu negocio',
-            '🤝 Acceso a red de mentoras expertas',
-            '💼 Plantillas avanzadas de negocio'
+            '👨‍👩‍👧‍👦 Descuentos dúo/familia',
+            '📈 Paquetes de especialización',
+            '🏆 Certificación profesional',
+            '💳 Pagos flexibles a plazos'
         ],
-        paymentOptions: 'Todos los métodos + pagos a plazos sin intereses',
-        cta: 'Impulsar mi Carrera',
+        paymentOptions: 'PSE, tarjetas, pagos a plazos, descuentos familiares',
+        cta: 'Nivel Profesional',
         ctaClass: 'cta-profesionales',
-        popular: true
+        popular: false
     },
     {
         id: 'premium',
         name: 'Plan Premium',
         target: 'Adultos que buscan certificaciones y empresas',
-        badge: 'Todo Incluido',
+        badge: 'Certificación',
         badgeClass: 'badge-premium',
         priceCOP: {
-            monthly: '125,000',
+            monthly: '100,000',
             originalMonthly: '150,000',
-            annual: '1,250,000',
+            annual: '1,000,000',
             originalAnnual: '1,800,000'
         },
         priceUSD: {
-            monthly: '31',
+            monthly: '25',
             originalMonthly: '38',
-            annual: '312',
+            annual: '250',
             originalAnnual: '450'
         },
-        savings: '31% descuento anual',
+        savings: 'Financiación "estudia ahora, paga después"',
         features: [
-            'Todo lo del Plan Profesionales',
-            'Programa intensivo con certificación oficial',
-            'Mentoría semanal 1:1 (16 sesiones)',
-            'Servicios de carrera y colocación laboral',
-            'Acceso VIP a eventos y conferencias',
+            'Todo lo del Plan Intermedio',
+            'Programas intensivos con certificaciones',
+            'Mentoría y servicios de carrera',
             'Paquetes corporativos disponibles',
-            'Financiamiento "Estudia Ahora, Paga Después"'
+            'Financiación "estudia ahora, paga después"',
+            'Certificación oficial reconocida',
+            'Servicios de colocación laboral'
         ],
         bonuses: [
-            '🏆 Certificación reconocida internacionalmente',
-            '💰 Garantía de ROI: recupera tu inversión',
-            '🌟 Mentora personal durante 6 meses',
-            '🔥 Programa acelerado de lanzamiento',
-            '💪 Soporte post-graduación por 1 año'
+            '🏢 Paquetes corporativos',
+            '🎯 Servicios de carrera',
+            '💼 Colocación laboral',
+            '📜 Certificación oficial',
+            '⏰ Pago diferido disponible'
         ],
-        paymentOptions: 'Todos + financiamiento sin intereses inicial + opciones corporativas',
-        cta: 'Acelerar mi Éxito',
+        paymentOptions: 'Financiación diferida, paquetes corporativos, todos los métodos',
+        cta: 'Certificación Premium',
         ctaClass: 'cta-premium',
         popular: false
     }

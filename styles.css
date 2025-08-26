@@ -471,15 +471,35 @@ header::before {
     margin-bottom: 1rem;
 }
 
+.badge-mujeres {
+    background: linear-gradient(45deg, #e91e63, #9c27b0);
+    color: white;
+    animation: glow 2s infinite alternate;
+    position: relative;
+}
+
+.badge-mujeres::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff4081, #ba68c8);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.3;
+    animation: pulse-border 2s infinite;
+}
+
 .badge-accessible {
     background: linear-gradient(45deg, #28a745, #20c997);
     color: white;
 }
 
-.badge-popular {
-    background: linear-gradient(45deg, #ffc857, #ff6b35);
+.badge-profesional {
+    background: linear-gradient(45deg, #17a2b8, #20c997);
     color: white;
-    animation: glow 2s infinite alternate;
 }
 
 .badge-premium {
@@ -488,8 +508,13 @@ header::before {
 }
 
 @keyframes glow {
-    from { box-shadow: 0 0 5px rgba(255, 200, 87, 0.5); }
-    to { box-shadow: 0 0 20px rgba(255, 200, 87, 0.8); }
+    from { box-shadow: 0 0 5px rgba(233, 30, 99, 0.5); }
+    to { box-shadow: 0 0 20px rgba(233, 30, 99, 0.8); }
+}
+
+@keyframes pulse-border {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.02); }
 }
 
 .plan-name {
@@ -648,6 +673,33 @@ header::before {
     min-width: 200px;
 }
 
+.cta-mujeres {
+    background: linear-gradient(45deg, #e91e63, #9c27b0);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-mujeres::before {
+    content: '💜';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: heartbeat 1.5s infinite;
+}
+
+.cta-mujeres:hover {
+    background: linear-gradient(45deg, #c2185b, #7b1fa2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+}
+
+@keyframes heartbeat {
+    0%, 50%, 100% { transform: translateY(-50%) scale(1); }
+    25%, 75% { transform: translateY(-50%) scale(1.1); }
+}
+
 .cta-estudiantes {
     background: linear-gradient(45deg, #28a745, #20c997);
     color: white;
@@ -660,14 +712,14 @@ header::before {
 }
 
 .cta-profesionales {
-    background: linear-gradient(45deg, #ffc857, #119da4);
+    background: linear-gradient(45deg, #17a2b8, #20c997);
     color: white;
 }
 
 .cta-profesionales:hover {
-    background: linear-gradient(45deg, #e6b84f, #0f8a94);
+    background: linear-gradient(45deg, #138496, #1e7e34);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 200, 87, 0.4);
+    box-shadow: 0 8px 20px rgba(23, 162, 184, 0.4);
 }
 
 .cta-premium {
@@ -1289,5 +1341,58 @@ footer::before {
     ::-moz-selection {
         background: rgba(255, 200, 87, 0.3);
         color: #1f2041;
+    }
+}
+
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+    .week-card, .pricing-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .week-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(17, 157, 164, 0.2);
+        border-top: 3px solid #ffc857;
+    }
+    
+    .pricing-card:hover {
+        transform: translateY(-4px);
+    }
+    
+    .expand-icon {
+        transition: transform 0.2s ease;
+    }
+    
+    .week-content, .plan-content {
+        transition: max-height 0.2s ease;
+    }
+    
+    header::before {
+        animation: float 30s infinite linear;
+    }
+    
+    .fade-in {
+        animation-duration: 0.4s;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+        background: #f8fcff;
+    }
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
