@@ -287,19 +287,13 @@ const pricingPlans = [
             'Acceso completo al programa de 16 semanas',
             'Becas y descuentos preferenciales',
             'Mentoría dirigida por mujeres líderes',
-            'Microcrédito o pago diferido disponible',
-            'Kit de digitalización incluido',
-            'Apoyo integral al bienestar',
-            'Acceso exclusivo a bolsa de empleo'
+            'Kit de digitalización incluido'
         ],
         bonuses: [
             '👩‍💼 Red exclusiva de mujeres emprendedoras',
-            '💜 Sesiones de empoderamiento y liderazgo',
             '🏠 Flexibilidad para madres trabajadoras',
-            '💰 Asesoría financiera personalizada',
             '🌟 Programa de mentoras exitosas'
         ],
-        paymentOptions: 'Microcrédito, pago diferido, PSE, becas disponibles',
         cta: '¡Únete a Mujeres con Futuro!',
         ctaClass: 'cta-mujeres',
         popular: true
@@ -327,18 +321,13 @@ const pricingPlans = [
             'Nivel freemium con contenido básico',
             'Micro-cursos de pago por clase',
             'Descuentos especiales para estudiantes',
-            'Créditos por referidos',
-            'Pagos flexibles vía PSE',
-            'Billeteras digitales aceptadas',
             'Certificado digital al finalizar'
         ],
         bonuses: [
             '🎓 Descuentos estudiantiles adicionales',
             '📚 Biblioteca digital de recursos',
-            '👥 Comunidad de estudiantes',
-            '💡 Contenido freemium permanente'
+            '👥 Comunidad de estudiantes'
         ],
-        paymentOptions: 'PSE, billeteras digitales, créditos por referidos, freemium',
         cta: 'Comenzar como Estudiante',
         ctaClass: 'cta-estudiantes',
         popular: false
@@ -365,19 +354,14 @@ const pricingPlans = [
         features: [
             'Todo lo del Plan Económico',
             'Planes anuales con descuentos',
-            'Descuentos para dúo/familia',
             'Paquetes de especialización incluidos',
-            'Opciones de pago a plazos',
-            'Pago con PSE o tarjeta',
             'Certificado profesional verificado'
         ],
         bonuses: [
             '👨‍👩‍👧‍👦 Descuentos dúo/familia',
             '📈 Paquetes de especialización',
-            '🏆 Certificación profesional',
-            '💳 Pagos flexibles a plazos'
+            '🏆 Certificación profesional'
         ],
-        paymentOptions: 'PSE, tarjetas, pagos a plazos, descuentos familiares',
         cta: 'Nivel Profesional',
         ctaClass: 'cta-profesionales',
         popular: false
@@ -405,19 +389,13 @@ const pricingPlans = [
             'Todo lo del Plan Intermedio',
             'Programas intensivos con certificaciones',
             'Mentoría y servicios de carrera',
-            'Paquetes corporativos disponibles',
-            'Financiación "estudia ahora, paga después"',
-            'Certificación oficial reconocida',
-            'Servicios de colocación laboral'
+            'Certificación oficial reconocida'
         ],
         bonuses: [
             '🏢 Paquetes corporativos',
-            '🎯 Servicios de carrera',
             '💼 Colocación laboral',
-            '📜 Certificación oficial',
-            '⏰ Pago diferido disponible'
+            '📜 Certificación oficial'
         ],
-        paymentOptions: 'Financiación diferida, paquetes corporativos, todos los métodos',
         cta: 'Certificación Premium',
         ctaClass: 'cta-premium',
         popular: false
@@ -543,11 +521,6 @@ function generatePricingContent() {
                                 ${plan.bonuses.map(bonus => `<li>${bonus}</li>`).join('')}
                             </ul>
                         </div>
-                    </div>
-                    
-                    <div class="plan-payment">
-                        <div class="section-title">💳 Opciones de Pago</div>
-                        <div class="section-content">${plan.paymentOptions}</div>
                     </div>
                     
                     <div class="plan-cta">
