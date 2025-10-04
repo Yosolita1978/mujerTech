@@ -74,9 +74,35 @@ function init() {
     startTimer();
     updateProgress();
     showModule('welcome');
+    setupMobileOptimizations();
     
-    // Add event listeners for keyboard navigation
     document.addEventListener('keydown', handleKeyPress);
+}
+
+// Setup mobile optimizations
+function setupMobileOptimizations() {
+    // Prevent double-tap zoom on buttons
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
+    
+    // Handle viewport height for mobile browsers
+    const setVH = () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+    
+    // Smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
 }
 
 // Timer function
@@ -85,22 +111,22 @@ function startTimer() {
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
         const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
         const seconds = (elapsed % 60).toString().padStart(2, '0');
-        document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        const timerElement = document.getElementById('timer');
+        if (timerElement) {
+            timerElement.textContent = `${minutes}:${seconds}`;
+        }
     }, 1000);
 }
 
 // Module navigation
 function showModule(moduleId) {
-    // Hide all modules
     document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
     
-    // Show selected module
     const targetModule = document.getElementById(moduleId);
     if (targetModule) {
         targetModule.classList.add('active');
     }
     
-    // Update navigation
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     const navItems = document.querySelectorAll('.nav-item');
     const moduleIndex = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'].indexOf(moduleId);
@@ -111,16 +137,18 @@ function showModule(moduleId) {
     currentModule = moduleId;
     updateProgress();
     
-    // Initialize activities for specific modules
     if (moduleId === 'module1') {
         setTimeout(() => createMythsActivity(), 100);
     }
     
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Save progress to localStorage
     localStorage.setItem('currentModule', moduleId);
+    
+    const nav = document.getElementById('nav');
+    if (nav && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+    }
 }
 
 // Progress bar update
@@ -128,13 +156,35 @@ function updateProgress() {
     const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'];
     const currentIndex = modules.indexOf(currentModule);
     const progress = ((currentIndex + 1) / modules.length) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+    }
 }
 
 // Mobile menu toggle
 function toggleMobileMenu() {
     const nav = document.getElementById('nav');
     nav.classList.toggle('open');
+    
+    if (nav.classList.contains('open')) {
+        document.addEventListener('click', closeMobileMenuOnClickOutside);
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.removeEventListener('click', closeMobileMenuOnClickOutside);
+        document.body.style.overflow = '';
+    }
+}
+
+function closeMobileMenuOnClickOutside(e) {
+    const nav = document.getElementById('nav');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+        nav.classList.remove('open');
+        document.body.style.overflow = '';
+        document.removeEventListener('click', closeMobileMenuOnClickOutside);
+    }
 }
 
 // Pre-quiz selection
@@ -145,7 +195,6 @@ function selectPreQuiz(element, value) {
     element.classList.add('selected');
     localStorage.setItem('aiExperience', value);
     
-    // Show feedback based on selection
     let feedback = '';
     switch(value) {
         case 'nunca':
@@ -179,43 +228,41 @@ function createMythsActivity() {
         { text: "La IA requiere supervisión humana", type: "reality" }
     ];
     
-    // Shuffle myths
     myths.sort(() => Math.random() - 0.5);
     
     container.innerHTML = `
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
             <div>
                 <h4 style="color: var(--secondary); margin-bottom: 1rem;">❌ Mitos</h4>
-                <div id="mythBox" class="drop-zone" style="min-height: 200px; background: #FFE8EB; padding: 1rem; border-radius: 0.5rem; border: 2px dashed var(--secondary);">
-                    <p style="color: #999; text-align: center;">Arrastra los mitos aquí</p>
+                <div id="mythBox" class="drop-zone" style="min-height: 150px; background: #FFE8EB; padding: 1rem; border-radius: 0.5rem; border-color: var(--secondary);">
+                    <p style="color: #999; text-align: center; font-size: 0.9rem;">Arrastra aquí</p>
                 </div>
             </div>
             <div>
                 <h4 style="color: var(--primary); margin-bottom: 1rem;">✅ Realidad</h4>
-                <div id="realityBox" class="drop-zone" style="min-height: 200px; background: #E6F4F6; padding: 1rem; border-radius: 0.5rem; border: 2px dashed var(--primary);">
-                    <p style="color: #999; text-align: center;">Arrastra las realidades aquí</p>
+                <div id="realityBox" class="drop-zone" style="min-height: 150px; background: #E6F4F6; padding: 1rem; border-radius: 0.5rem; border-color: var(--primary);">
+                    <p style="color: #999; text-align: center; font-size: 0.9rem;">Arrastra aquí</p>
                 </div>
             </div>
         </div>
         <div style="margin-top: 1.5rem;">
-            <h4 style="margin-bottom: 1rem;">Afirmaciones para clasificar:</h4>
-            <div id="statementsContainer" class="drop-zone" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <h4 style="margin-bottom: 1rem;">Afirmaciones:</h4>
+            <div id="statementsContainer" class="drop-zone" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
                 ${myths.map((item, index) => `
                     <div class="draggable-item" 
                          draggable="true" 
                          data-type="${item.type}"
                          data-index="${index}"
-                         style="background: white; padding: 0.75rem; border-radius: 0.5rem; border: 2px solid var(--border); cursor: move; transition: all 0.3s;">
+                         style="background: white; cursor: move; transition: all 0.3s;">
                         ${item.text}
                     </div>
                 `).join('')}
             </div>
         </div>
-        <button class="btn btn-primary" onclick="checkMythsActivity()" style="margin-top: 1.5rem;">Verificar Respuestas</button>
+        <button class="btn btn-primary" onclick="checkMythsActivity()" style="margin-top: 1.5rem; width: 100%;">Verificar Respuestas</button>
         <div id="mythsFeedback" style="margin-top: 1rem;"></div>
     `;
     
-    // Add drag and drop event listeners
     setupDragAndDrop();
 }
 
@@ -223,6 +270,79 @@ function createMythsActivity() {
 function setupDragAndDrop() {
     const draggables = document.querySelectorAll('.draggable-item');
     const dropZones = document.querySelectorAll('.drop-zone');
+    let draggedElement = null;
+    
+    const isTouchDevice = 'ontouchstart' in window;
+    
+    if (isTouchDevice) {
+        setupTouchDragDrop(draggables, dropZones);
+    } else {
+        setupMouseDragDrop(draggables, dropZones);
+    }
+}
+
+// Touch drag and drop for mobile
+function setupTouchDragDrop(draggables, dropZones) {
+    let activeElement = null;
+    let initialX = 0;
+    let initialY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    
+    draggables.forEach(draggable => {
+        draggable.addEventListener('touchstart', (e) => {
+            activeElement = e.target.closest('.draggable-item');
+            const touch = e.touches[0];
+            
+            initialX = touch.clientX - activeElement.offsetLeft;
+            initialY = touch.clientY - activeElement.offsetTop;
+            
+            activeElement.style.opacity = '0.7';
+            activeElement.style.zIndex = '1000';
+            activeElement.style.position = 'fixed';
+        }, { passive: true });
+        
+        draggable.addEventListener('touchmove', (e) => {
+            if (!activeElement) return;
+            
+            e.preventDefault();
+            const touch = e.touches[0];
+            
+            currentX = touch.clientX - initialX;
+            currentY = touch.clientY - initialY;
+            
+            activeElement.style.left = currentX + 'px';
+            activeElement.style.top = currentY + 'px';
+        }, { passive: false });
+        
+        draggable.addEventListener('touchend', (e) => {
+            if (!activeElement) return;
+            
+            const touch = e.changedTouches[0];
+            const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+            const dropZone = elementBelow?.closest('.drop-zone');
+            
+            activeElement.style.opacity = '1';
+            activeElement.style.zIndex = '';
+            activeElement.style.position = '';
+            activeElement.style.left = '';
+            activeElement.style.top = '';
+            
+            if (dropZone && dropZone.id !== 'statementsContainer') {
+                const placeholder = dropZone.querySelector('p');
+                if (placeholder && placeholder.style.color === 'rgb(153, 153, 153)') {
+                    placeholder.remove();
+                }
+                dropZone.appendChild(activeElement);
+            }
+            
+            activeElement = null;
+        }, { passive: true });
+    });
+}
+
+// Mouse drag and drop for desktop
+function setupMouseDragDrop(draggables, dropZones) {
     let draggedElement = null;
     
     draggables.forEach(draggable => {
@@ -242,7 +362,6 @@ function setupDragAndDrop() {
             e.preventDefault();
             e.dataTransfer.dropEffect = 'move';
             
-            // Visual feedback
             if (zone.id === 'mythBox') {
                 zone.style.background = '#FFCCCC';
             } else if (zone.id === 'realityBox') {
@@ -251,7 +370,6 @@ function setupDragAndDrop() {
         });
         
         zone.addEventListener('dragleave', (e) => {
-            // Reset background
             if (zone.id === 'mythBox') {
                 zone.style.background = '#FFE8EB';
             } else if (zone.id === 'realityBox') {
@@ -262,7 +380,6 @@ function setupDragAndDrop() {
         zone.addEventListener('drop', (e) => {
             e.preventDefault();
             
-            // Reset background
             if (zone.id === 'mythBox') {
                 zone.style.background = '#FFE8EB';
             } else if (zone.id === 'realityBox') {
@@ -270,17 +387,14 @@ function setupDragAndDrop() {
             }
             
             if (draggedElement) {
-                // Remove placeholder text if it exists
                 const placeholder = zone.querySelector('p');
-                if (placeholder && placeholder.style.color === '#999') {
+                if (placeholder && placeholder.style.color === 'rgb(153, 153, 153)') {
                     placeholder.remove();
                 }
                 
-                // Move the element
                 zone.appendChild(draggedElement);
                 draggedElement = null;
                 
-                // Re-setup drag and drop for moved elements
                 setupDragAndDrop();
             }
         });
@@ -296,7 +410,6 @@ function checkMythsActivity() {
     let correct = 0;
     let total = 0;
     
-    // Check myths box
     mythBox.querySelectorAll('.draggable-item').forEach(item => {
         total++;
         if (item.dataset.type === 'myth') {
@@ -309,7 +422,6 @@ function checkMythsActivity() {
         }
     });
     
-    // Check reality box
     realityBox.querySelectorAll('.draggable-item').forEach(item => {
         total++;
         if (item.dataset.type === 'reality') {
@@ -325,7 +437,7 @@ function checkMythsActivity() {
     if (total === 0) {
         feedback.innerHTML = '<p style="color: var(--secondary);">Por favor, arrastra las afirmaciones a las categorías correspondientes.</p>';
     } else if (correct === 6 && total === 6) {
-        feedback.innerHTML = '<p style="color: #10B981; font-weight: bold; font-size: 1.2rem;">¡Excelente! Has clasificado todas las afirmaciones correctamente. 🎉</p>';
+        feedback.innerHTML = '<p style="color: #10B981; font-weight: bold; font-size: 1.1rem;">¡Excelente! Has clasificado todas las afirmaciones correctamente. 🎉</p>';
         showNotification('¡Perfecto! Entiendes bien la diferencia entre mitos y realidad de la IA.', 'success');
     } else {
         feedback.innerHTML = `<p style="color: var(--secondary);">Has acertado ${correct} de ${total}. Las respuestas incorrectas están marcadas en rojo. ¡Intenta de nuevo!</p>`;
@@ -351,14 +463,15 @@ function generatePrompt() {
     const outputDiv = document.getElementById('promptOutput');
     outputDiv.innerHTML = `
         <strong>Tu prompt generado:</strong><br><br>
-        <div style="background: #F9FAFB; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-family: monospace;">
+        <div style="background: #F9FAFB; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-family: monospace; white-space: pre-wrap; word-break: break-word;">
             ${prompt.replace(/\n/g, '<br>')}
         </div>
-        <button class="btn btn-secondary" onclick="copyPrompt()">📋 Copiar al portapapeles</button>
-        <button class="btn btn-primary" style="margin-left: 1rem;" onclick="testPrompt()">🚀 Probar con IA simulada</button>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="copyPrompt()" style="flex: 1; min-width: 150px;">📋 Copiar</button>
+            <button class="btn btn-primary" onclick="testPrompt()" style="flex: 1; min-width: 150px;">🚀 Probar</button>
+        </div>
     `;
     
-    // Save to localStorage
     localStorage.setItem('lastPrompt', prompt);
 }
 
@@ -366,12 +479,32 @@ function generatePrompt() {
 function copyPrompt() {
     const promptText = localStorage.getItem('lastPrompt');
     if (promptText) {
-        navigator.clipboard.writeText(promptText).then(() => {
-            showNotification('¡Prompt copiado al portapapeles!', 'success');
-        }).catch(() => {
-            showNotification('No se pudo copiar el prompt', 'error');
-        });
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(promptText).then(() => {
+                showNotification('¡Prompt copiado al portapapeles!', 'success');
+            }).catch(() => {
+                fallbackCopyToClipboard(promptText);
+            });
+        } else {
+            fallbackCopyToClipboard(promptText);
+        }
     }
+}
+
+function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        showNotification('¡Prompt copiado!', 'success');
+    } catch (err) {
+        showNotification('No se pudo copiar. Por favor copia manualmente.', 'error');
+    }
+    document.body.removeChild(textArea);
 }
 
 // Test prompt with simulated AI
@@ -402,7 +535,6 @@ function generateCustomerQuestions() {
         return;
     }
     
-    // Generate contextual questions based on the business idea
     const baseQuestions = [
         `¿Cuál es el precio de los productos/servicios de ${idea}?`,
         `¿Hacen envíos a toda Latinoamérica?`,
@@ -416,24 +548,22 @@ function generateCustomerQuestions() {
         `¿Tienen testimonios de clientes anteriores?`
     ];
     
-    // Add industry-specific questions
     const specificQuestions = generateIndustryQuestions(idea);
-    const allQuestions = [...baseQuestions, ...specificQuestions];
     
     const questionsHtml = `
         <h4 style="color: var(--primary); margin-bottom: 1rem;">
-            Preguntas frecuentes generadas para: <strong>${idea}</strong>
+            Preguntas frecuentes para: <strong>${idea}</strong>
         </h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+        <div style="display: grid; gap: 1rem;">
             <div>
                 <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">📌 Preguntas Generales</h5>
-                <ul style="padding-left: 1.5rem; line-height: 2;">
+                <ul style="padding-left: 1.5rem; line-height: 1.8;">
                     ${baseQuestions.slice(0, 5).map(q => `<li>${q}</li>`).join('')}
                 </ul>
             </div>
             <div>
                 <h5 style="color: var(--secondary); margin-bottom: 0.5rem;">🎯 Preguntas Específicas</h5>
-                <ul style="padding-left: 1.5rem; line-height: 2;">
+                <ul style="padding-left: 1.5rem; line-height: 1.8;">
                     ${specificQuestions.map(q => `<li>${q}</li>`).join('')}
                 </ul>
             </div>
@@ -449,7 +579,6 @@ function generateCustomerQuestions() {
     document.getElementById('customerQuestions').innerHTML = questionsHtml;
     document.getElementById('customerQuestions').style.display = 'block';
     
-    // Save to localStorage
     localStorage.setItem('businessIdea', idea);
 }
 
@@ -507,7 +636,6 @@ function generateIndustryQuestions(idea) {
 function toggleCheck(element) {
     element.classList.toggle('checked');
     
-    // Count checked items
     const checklist = element.closest('.checklist');
     const totalItems = checklist.querySelectorAll('.checklist-icon').length;
     const checkedItems = checklist.querySelectorAll('.checklist-icon.checked').length;
@@ -516,7 +644,6 @@ function toggleCheck(element) {
         showNotification('¡Excelente! Has completado toda la checklist 🎉', 'success');
     }
     
-    // Save progress
     saveChecklistProgress();
 }
 
@@ -561,13 +688,11 @@ function loadChecklistProgress() {
 function checkAnswer(element, answer) {
     const question = quizQuestions[currentQuestion];
     
-    // Disable all options
     document.querySelectorAll('#quizOptions .quiz-option').forEach(opt => {
         opt.onclick = null;
         opt.style.cursor = 'default';
     });
     
-    // Check if answer is correct
     if (answer === question.correct) {
         element.classList.add('correct');
         quizScore++;
@@ -576,7 +701,6 @@ function checkAnswer(element, answer) {
         element.classList.add('incorrect');
         showNotification('Incorrecto. La respuesta correcta está marcada en verde.', 'error');
         
-        // Show correct answer
         document.querySelectorAll('#quizOptions .quiz-option').forEach(opt => {
             if (opt.textContent.trim().startsWith(question.correct + ')')) {
                 opt.classList.add('correct');
@@ -584,7 +708,6 @@ function checkAnswer(element, answer) {
         });
     }
     
-    // Show next button
     document.getElementById('nextQuizBtn').style.display = 'block';
 }
 
@@ -621,7 +744,6 @@ function showQuizResults() {
     document.getElementById('finalScore').textContent = `${quizScore}/${quizQuestions.length}`;
     document.getElementById('evalNav').style.display = 'none';
     
-    // Calculate percentage
     const percentage = (quizScore / quizQuestions.length) * 100;
     let message = '';
     
@@ -635,7 +757,6 @@ function showQuizResults() {
     
     showNotification(message, percentage >= 60 ? 'success' : 'warning');
     
-    // Save results
     localStorage.setItem('quizScore', quizScore);
     localStorage.setItem('quizCompleted', 'true');
 }
@@ -663,7 +784,6 @@ function downloadResource(type) {
     
     const resource = resources[type];
     if (resource) {
-        // Create a blob and download
         const blob = new Blob([resource.content], { type: 'text/plain' });
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -722,7 +842,6 @@ www.mujertech.org
 function showFeedback() {
     const feedback = prompt('¿Cómo fue tu experiencia? ¿Qué podemos mejorar?');
     if (feedback) {
-        // In a real implementation, this would send to a server
         localStorage.setItem('userFeedback', feedback);
         showNotification('¡Gracias por tu feedback! Lo usaremos para mejorar el taller.', 'success');
     }
@@ -751,45 +870,45 @@ function showExample(type) {
     
     const example = examples[type];
     if (example) {
-        alert(`${example.title}\n\n${example.content}`);
+        showNotification(`${example.title}\n\n${example.content}`, 'info');
     }
 }
 
 // Show notification
 function showNotification(message, type = 'info') {
-    // Remove existing notifications
     const existing = document.querySelector('.notification');
     if (existing) {
         existing.remove();
     }
     
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = 'notification';
     notification.style.cssText = `
         position: fixed;
-        top: 100px;
-        right: 20px;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 1rem 1.5rem;
         border-radius: 0.5rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         z-index: 2000;
-        animation: slideIn 0.3s ease;
-        max-width: 300px;
+        animation: slideDown 0.3s ease;
+        max-width: calc(100% - 2rem);
+        text-align: center;
+        white-space: pre-line;
     `;
     
-    // Set color based on type
     switch(type) {
         case 'success':
-            notification.style.background = '#2c8e9c';
+            notification.style.background = '#10B981';
             notification.style.color = 'white';
             break;
         case 'error':
-            notification.style.background = '#ff6978';
+            notification.style.background = '#EF4444';
             notification.style.color = 'white';
             break;
         case 'warning':
-            notification.style.background = '#ff9a88';
+            notification.style.background = '#F59E0B';
             notification.style.color = 'white';
             break;
         default:
@@ -800,15 +919,16 @@ function showNotification(message, type = 'info') {
     notification.textContent = message;
     document.body.appendChild(notification);
     
-    // Auto remove after 3 seconds
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
+        notification.style.animation = 'slideUp 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
 // Keyboard navigation
 function handleKeyPress(e) {
+    if (window.innerWidth <= 768) return;
+    
     const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'];
     const currentIndex = modules.indexOf(currentModule);
     
@@ -824,7 +944,11 @@ function handleKeyPress(e) {
             }
             break;
         case 'Escape':
-            toggleMobileMenu();
+            const nav = document.getElementById('nav');
+            if (nav && nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                document.body.style.overflow = '';
+            }
             break;
     }
 }
@@ -840,31 +964,34 @@ function loadProgress() {
     
     const savedBusinessIdea = localStorage.getItem('businessIdea');
     if (savedBusinessIdea) {
-        document.getElementById('businessIdea').value = savedBusinessIdea;
+        const businessIdeaInput = document.getElementById('businessIdea');
+        if (businessIdeaInput) {
+            businessIdeaInput.value = savedBusinessIdea;
+        }
     }
 }
 
 // Add CSS animation styles
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideIn {
+    @keyframes slideDown {
         from {
-            transform: translateX(100%);
+            transform: translateX(-50%) translateY(-100%);
             opacity: 0;
         }
         to {
-            transform: translateX(0);
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
     }
     
-    @keyframes slideOut {
+    @keyframes slideUp {
         from {
-            transform: translateX(0);
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
         to {
-            transform: translateX(100%);
+            transform: translateX(-50%) translateY(-100%);
             opacity: 0;
         }
     }
@@ -881,3 +1008,13 @@ window.addEventListener('load', () => {
 window.addEventListener('beforeunload', () => {
     saveChecklistProgress();
 });
+
+// Prevent zoom on double tap for iOS
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
