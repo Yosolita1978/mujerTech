@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MujerTech - Women Business & AI | Taller Introductorio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="logomujertech.png" alt="MujerTech Logo" style="height: 40px; width: auto;">
+                <span>Mujer Tech</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav class="nav" id="nav">
+                <li class="nav-item active" onclick="showModule('welcome')">Inicio</li>
+                <li class="nav-item" onclick="showModule('module1')">IA 101</li>
+                <li class="nav-item" onclick="showModule('module2')">Prompting</li>
+                <li class="nav-item" onclick="showModule('module3')">Flujos</li>
+                <li class="nav-item" onclick="showModule('module4')">Ética</li>
+                <li class="nav-item" onclick="showModule('module5')">Recursos</li>
+                <li class="nav-item" onclick="showModule('evaluation')">Evaluación</li>
+            </nav>
+        </div>
+        <div class="progress-bar" id="progressBar"></div>
+    </header>
+
+    <!-- Loader -->
+    <div class="loader"></div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Welcome Module -->
+        <section class="module active" id="welcome">
+            <div class="module-header">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div class="hero-logo">
+                        <img src="bannerlogo.png" alt="MujerTech" style="height: 200px; width: auto; border: none;">
+                    </div>
+                </div>
+                <h1 class="module-title">¡Bienvenida al Taller de IA para Emprendedoras!</h1>
+                <p class="module-subtitle">Transforma tu negocio con Inteligencia Artificial en solo 2 horas</p>
+                <span class="time-badge">⏱️ Duración total: 2 horas</span>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">🎯</span>
+                    Lo que aprenderás hoy
+                </h2>
+                <ul style="padding-left: 2rem; line-height: 2;">
+                    <li>Fundamentos de IA generativa para tu negocio</li>
+                    <li>Técnicas de prompting para crear contenido efectivo</li>
+                    <li>Flujos de trabajo automatizados sin programar</li>
+                    <li>Criterios éticos y de privacidad</li>
+                    <li>Herramientas prácticas que puedes usar HOY</li>
+                </ul>
+            </div>
+
+            <div class="quiz-container">
+                <h3 class="quiz-question">Pre-evaluación: ¿Cuál es tu experiencia con IA?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectPreQuiz(this, 'nunca')">
+                        Nunca la he usado
+                    </div>
+                    <div class="quiz-option" onclick="selectPreQuiz(this, 'conocimiento')">
+                        Sé lo que es pero no la he aplicado
+                    </div>
+                    <div class="quiz-option" onclick="selectPreQuiz(this, 'ocasional')">
+                        La utilizo ocasionalmente
+                    </div>
+                    <div class="quiz-option" onclick="selectPreQuiz(this, 'frecuente')">
+                        La uso frecuentemente
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="showModule('module1')">Comenzar el Taller →</button>
+            </div>
+        </section>
+
+        <!-- Module 1: IA Generativa 101 -->
+        <section class="module" id="module1">
+            <div class="module-header">
+                <h1 class="module-title">Módulo 1: IA Generativa 101</h1>
+                <p class="module-subtitle">Desmitificando la Inteligencia Artificial</p>
+                <span class="time-badge">⏱️ 25 minutos</span>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">🤖</span>
+                    ¿Qué es la IA Generativa?
+                </h2>
+                <p style="margin-bottom: 1rem;">La IA generativa son modelos que aprenden patrones de datos masivos para crear contenido nuevo: texto, imágenes, audio. Piensa en ella como tu asistente creativa personal.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+                    <div style="background: #E6F4F6; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--primary);">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;">✅ Lo que SÍ puede hacer</h4>
+                        <ul style="font-size: 0.9rem; padding-left: 1.5rem;">
+                            <li>Generar ideas creativas</li>
+                            <li>Crear borradores de contenido</li>
+                            <li>Resumir información</li>
+                            <li>Traducir textos</li>
+                        </ul>
+                    </div>
+                    <div style="background: #FFE8EB; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid var(--secondary);">
+                        <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">❌ Lo que NO puede hacer</h4>
+                        <ul style="font-size: 0.9rem; padding-left: 1.5rem;">
+                            <li>Pensar por sí misma</li>
+                            <li>Reemplazar tu criterio</li>
+                            <li>Garantizar 100% precisión</li>
+                            <li>Trabajar sin supervisión</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3 class="activity-title">🎯 Actividad: Identifica Mitos vs Realidad</h3>
+                <p>Arrastra cada afirmación a la categoría correcta:</p>
+                <div id="mythsActivity" style="margin-top: 1rem;">
+                    <!-- Activity will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">💡</span>
+                    Casos de Uso para Tu Negocio
+                </h2>
+                <div class="resources-grid">
+                    <div class="resource-card" onclick="showExample('marketing')">
+                        <div class="resource-icon">📱</div>
+                        <h4>Marketing Digital</h4>
+                        <p>Posts para redes, emails, copys</p>
+                    </div>
+                    <div class="resource-card" onclick="showExample('research')">
+                        <div class="resource-icon">🔍</div>
+                        <h4>Investigación</h4>
+                        <p>Análisis de mercado y competencia</p>
+                    </div>
+                    <div class="resource-card" onclick="showExample('customer')">
+                        <div class="resource-icon">👥</div>
+                        <h4>Servicio al Cliente</h4>
+                        <p>FAQs y respuestas automatizadas</p>
+                    </div>
+                    <div class="resource-card" onclick="showExample('product')">
+                        <div class="resource-icon">✨</div>
+                        <h4>Desarrollo de Producto</h4>
+                        <p>Nombres, descripciones, ideas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="showModule('welcome')">← Anterior</button>
+                <button class="btn btn-primary" onclick="showModule('module2')">Siguiente: Prompting →</button>
+            </div>
+        </section>
+
+        <!-- Module 2: Prompting -->
+        <section class="module" id="module2">
+            <div class="module-header">
+                <h1 class="module-title">Módulo 2: Prompting Efectivo</h1>
+                <p class="module-subtitle">El arte de dar instrucciones a la IA</p>
+                <span class="time-badge">⏱️ 30 minutos</span>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">📝</span>
+                    Estructura de un Buen Prompt
+                </h2>
+                <div style="background: #F3F4F6; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">La Fórmula CTFT:</h4>
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <span style="background: var(--primary); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">C</span>
+                            <div>
+                                <strong>Contexto:</strong> Quién eres y qué rol asume la IA
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <span style="background: var(--primary); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">T</span>
+                            <div>
+                                <strong>Tarea:</strong> Acción específica que necesitas
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <span style="background: var(--primary); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">F</span>
+                            <div>
+                                <strong>Formato:</strong> Cómo quieres la respuesta
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: start; gap: 1rem;">
+                            <span style="background: var(--primary); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">T</span>
+                            <div>
+                                <strong>Tono:</strong> Estilo de comunicación deseado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prompt-builder">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem;">🛠️ Constructor de Prompts</h3>
+                
+                <div class="prompt-field">
+                    <label class="prompt-label">Contexto</label>
+                    <input type="text" class="prompt-input" id="promptContext" 
+                           placeholder="Ej: Eres una asesora de marketing para mujeres emprendedoras en México">
+                </div>
+                
+                <div class="prompt-field">
+                    <label class="prompt-label">Tarea</label>
+                    <input type="text" class="prompt-input" id="promptTask" 
+                           placeholder="Ej: Necesito crear 3 posts para Instagram sobre cosmética natural">
+                </div>
+                
+                <div class="prompt-field">
+                    <label class="prompt-label">Formato</label>
+                    <input type="text" class="prompt-input" id="promptFormat" 
+                           placeholder="Ej: Lista con emojis, máximo 150 caracteres cada uno">
+                </div>
+                
+                <div class="prompt-field">
+                    <label class="prompt-label">Tono</label>
+                    <input type="text" class="prompt-input" id="promptTone" 
+                           placeholder="Ej: Amigable, motivador y profesional">
+                </div>
+                
+                <button class="btn btn-primary" onclick="generatePrompt()">Generar Prompt</button>
+                
+                <div class="prompt-output" id="promptOutput">
+                    Tu prompt aparecerá aquí...
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3 class="activity-title">💡 Mejores Prácticas</h3>
+                <ul class="checklist">
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span>Sé específica en tus instrucciones</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span>Proporciona ejemplos cuando sea posible</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span>Revisa y ajusta las respuestas</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span>Itera: mejora tu prompt basándote en los resultados</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span>Verifica la información generada</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="showModule('module1')">← Anterior</button>
+                <button class="btn btn-primary" onclick="showModule('module3')">Siguiente: Flujos →</button>
+            </div>
+        </section>
+
+        <!-- Module 3: Workflows -->
+        <section class="module" id="module3">
+            <div class="module-header">
+                <h1 class="module-title">Módulo 3: Flujos de Trabajo con IA</h1>
+                <p class="module-subtitle">Automatiza tu investigación y procesos</p>
+                <span class="time-badge">⏱️ 30 minutos</span>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">🔄</span>
+                    Flujo de Trabajo Básico
+                </h2>
+                <div style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; padding: 2rem 0;">
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.5rem;">
+                            💭
+                        </div>
+                        <strong>Ideación</strong>
+                    </div>
+                    <span style="font-size: 2rem; color: var(--primary);">→</span>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.5rem;">
+                            🔍
+                        </div>
+                        <strong>Investigación</strong>
+                    </div>
+                    <span style="font-size: 2rem; color: var(--primary);">→</span>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.5rem;">
+                            📊
+                        </div>
+                        <strong>Síntesis</strong>
+                    </div>
+                    <span style="font-size: 2rem; color: var(--primary);">→</span>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #ff9a88; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.5rem;">
+                            🎯
+                        </div>
+                        <strong>Análisis</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3 class="activity-title">🔬 Mini-Experimento: Mapeo de Preguntas del Cliente</h3>
+                <ol class="activity-steps">
+                    <li>Define tu idea de negocio</li>
+                    <li>Usa la IA para generar "preguntas frecuentes de clientes"</li>
+                    <li>Agrupa las preguntas por temas comunes</li>
+                    <li>Sintetiza los hallazgos principales</li>
+                    <li>Reflexiona sobre limitaciones y próximos pasos</li>
+                </ol>
+                
+                <div style="margin-top: 1.5rem;">
+                    <label class="prompt-label">Tu idea de negocio:</label>
+                    <input type="text" class="prompt-input" id="businessIdea" 
+                           placeholder="Ej: Tienda online de cosmética natural">
+                    <button class="btn btn-primary" style="margin-top: 1rem;" onclick="generateCustomerQuestions()">
+                        Generar Preguntas de Clientes
+                    </button>
+                </div>
+                
+                <div id="customerQuestions" style="display: none; margin-top: 1.5rem;">
+                    <!-- Questions will be generated here -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">⚡</span>
+                    Automatización Sin Código
+                </h2>
+                <p>Herramientas que puedes conectar sin programar:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="padding: 1rem; background: #F3F4F6; border-radius: 0.5rem; text-align: center;">
+                        <strong>ChatGPT</strong> + <strong>Google Sheets</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Análisis de datos</p>
+                    </div>
+                    <div style="padding: 1rem; background: #F3F4F6; border-radius: 0.5rem; text-align: center;">
+                        <strong>Zapier</strong> + <strong>Email</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Respuestas automáticas</p>
+                    </div>
+                    <div style="padding: 1rem; background: #F3F4F6; border-radius: 0.5rem; text-align: center;">
+                        <strong>Notion AI</strong> + <strong>Calendar</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">Gestión de tareas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="showModule('module2')">← Anterior</button>
+                <button class="btn btn-primary" onclick="showModule('module4')">Siguiente: Ética →</button>
+            </div>
+        </section>
+
+        <!-- Module 4: Ethics -->
+        <section class="module" id="module4">
+            <div class="module-header">
+                <h1 class="module-title">Módulo 4: Ética y Selección de Herramientas</h1>
+                <p class="module-subtitle">Usa la IA de forma responsable y elige las mejores herramientas</p>
+                <span class="time-badge">⏱️ 10 minutos</span>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">🛡️</span>
+                    Checklist de Ética y Privacidad
+                </h2>
+                <ul class="checklist">
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Transparencia:</strong> Informar cuando uses IA</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Consentimiento:</strong> Pedir permiso para usar datos de clientes</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Revisión humana:</strong> Verificar todas las respuestas</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Sesgos:</strong> Evaluar estereotipos y ajustar</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Confidencialidad:</strong> Proteger información sensible</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Legalidad:</strong> Respetar derechos de autor</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Accesibilidad:</strong> Elegir herramientas inclusivas</span>
+                    </li>
+                    <li>
+                        <div class="checklist-icon" onclick="toggleCheck(this)"></div>
+                        <span><strong>Auditoría:</strong> Documentar uso y decisiones</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">⚖️</span>
+                    Comparación de Herramientas
+                </h2>
+                <div style="overflow-x: auto;">
+                    <table class="tool-table">
+                        <thead>
+                            <tr>
+                                <th>Herramienta</th>
+                                <th>Costo</th>
+                                <th>Facilidad</th>
+                                <th>Mejor para</th>
+                                <th>Limitaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>ChatGPT (Gratis)</strong></td>
+                                <td>$0</td>
+                                <td><span class="rating-stars">★★★★★</span></td>
+                                <td>Contenido, ideas</td>
+                                <td>Límite de mensajes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ChatGPT Plus</strong></td>
+                                <td>$20/mes</td>
+                                <td><span class="rating-stars">★★★★★</span></td>
+                                <td>Uso intensivo</td>
+                                <td>Costo mensual</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Claude.ai</strong></td>
+                                <td>$0 - $20/mes</td>
+                                <td><span class="rating-stars">★★★★☆</span></td>
+                                <td>Análisis largo</td>
+                                <td>Menos conocido</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notion AI</strong></td>
+                                <td>$10/mes</td>
+                                <td><span class="rating-stars">★★★★☆</span></td>
+                                <td>Gestión proyectos</td>
+                                <td>Curva aprendizaje</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Canva Magic</strong></td>
+                                <td>$15/mes</td>
+                                <td><span class="rating-stars">★★★★★</span></td>
+                                <td>Diseño visual</td>
+                                <td>Solo diseño</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="activity-box">
+                <h3 class="activity-title">🎯 Criterios de Selección</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="text-align: center; padding: 1rem; background: white; border-radius: 0.5rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+                        <strong>Costo</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray);">¿Fits tu presupuesto?</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: white; border-radius: 0.5rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+                        <strong>Idioma</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray);">¿Funciona en español?</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: white; border-radius: 0.5rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                        <strong>Móvil</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray);">¿App o web móvil?</p>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: white; border-radius: 0.5rem;">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔌</div>
+                        <strong>Conexión</strong>
+                        <p style="font-size: 0.9rem; color: var(--gray);">¿Funciona offline?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="showModule('module3')">← Anterior</button>
+                <button class="btn btn-primary" onclick="showModule('module5')">Siguiente: Recursos →</button>
+            </div>
+        </section>
+
+        <!-- Module 5: Resources -->
+        <section class="module" id="module5">
+            <div class="module-header">
+                <h1 class="module-title">Módulo 5: Recursos Descargables</h1>
+                <p class="module-subtitle">Tu kit de herramientas para empezar HOY</p>
+                <span class="time-badge">⏱️ 5 minutos</span>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-card" onclick="downloadResource('prompts')">
+                    <div class="resource-icon">📝</div>
+                    <h3>Biblioteca de Prompts</h3>
+                    <p>30+ plantillas listas para usar</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Descargar CSV</button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('tools')">
+                    <div class="resource-icon">⚖️</div>
+                    <h3>Evaluación de Herramientas</h3>
+                    <p>Tabla comparativa completa</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Descargar CSV</button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('ethics')">
+                    <div class="resource-icon">🛡️</div>
+                    <h3>Checklist de Ética</h3>
+                    <p>Guía de uso responsable</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Descargar PDF</button>
+                </div>
+                
+                <div class="resource-card" onclick="downloadResource('workflow')">
+                    <div class="resource-icon">🔄</div>
+                    <h3>Plantillas de Flujos</h3>
+                    <p>Diagramas y procesos</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Descargar PDF</button>
+                </div>
+            </div>
+
+            <div class="card" style="background: var(--gradient); color: white;">
+                <h2 class="card-title" style="color: white;">
+                    <span class="card-icon">🚀</span>
+                    ¿Lista para el siguiente paso?
+                </h2>
+                <p style="margin-bottom: 1.5rem;">Únete al programa completo MujerTech de 16 semanas y transforma tu negocio con más de 15 herramientas de IA.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <h4>✨ Incluye:</h4>
+                        <ul style="padding-left: 1.5rem;">
+                            <li>64 horas de formación</li>
+                            <li>Mentoría personalizada</li>
+                            <li>Comunidad MujerTech</li>
+                            <li>Certificado oficial</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📅 Próxima cohorte MujerTech:</h4>
+                        <p><strong>15 de marzo 2025</strong></p>
+                        <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">
+                            Inscríbete en MujerTech
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="showModule('module4')">← Anterior</button>
+                <button class="btn btn-primary" onclick="showModule('evaluation')">Evaluación Final →</button>
+            </div>
+        </section>
+
+        <!-- Evaluation Module -->
+        <section class="module" id="evaluation">
+            <div class="module-header">
+                <h1 class="module-title">Evaluación Final</h1>
+                <p class="module-subtitle">Demuestra lo que aprendiste</p>
+                <span class="time-badge">⏱️ 10 minutos</span>
+            </div>
+
+            <div class="quiz-container">
+                <h3 class="quiz-question">Pregunta 1 de 6</h3>
+                <p id="quizQuestion">¿Cuál de las siguientes opciones NO describe correctamente la IA generativa?</p>
+                <div class="quiz-options" id="quizOptions">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'a')">
+                        a) Aprende patrones de datos para crear contenido nuevo
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'b')">
+                        b) Reemplaza totalmente el criterio humano
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'c')">
+                        c) Puede generar textos, imágenes o audio
+                    </div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'd')">
+                        d) Requiere supervisión de la usuaria
+                    </div>
+                </div>
+                <button class="btn btn-secondary" id="nextQuizBtn" style="display: none; margin-top: 1rem;" onclick="nextQuestion()">
+                    Siguiente pregunta →
+                </button>
+            </div>
+
+            <div class="card" id="quizResults" style="display: none;">
+                <h2 class="card-title">
+                    <span class="card-icon">🎉</span>
+                    ¡Felicitaciones!
+                </h2>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">
+                    Has completado el taller con éxito.
+                </p>
+                <div style="background: var(--gradient); color: white; padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                    <h3 style="margin-bottom: 0.5rem;">Tu puntuación:</h3>
+                    <div style="font-size: 3rem; font-weight: bold;" id="finalScore">0/6</div>
+                </div>
+                
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🎯 Tu próxima acción:</h3>
+                <textarea style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 0.5rem; resize: vertical;" 
+                          rows="3" placeholder="¿Qué vas a implementar mañana en tu negocio?"></textarea>
+                
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="downloadCertificate()">
+                        Descargar Certificado
+                    </button>
+                    <button class="btn btn-secondary" onclick="showFeedback()">
+                        Dar Feedback
+                    </button>
+                </div>
+            </div>
+
+            <div class="btn-group" id="evalNav">
+                <button class="btn btn-secondary" onclick="showModule('module5')">← Anterior</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Timer -->
+    <div class="timer-container">
+        <span>⏱️</span>
+        <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
