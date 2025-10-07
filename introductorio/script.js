@@ -28,22 +28,22 @@ const quizQuestions = [
         correct: "b"
     },
     {
-        question: "Para mitigar sesgos y alucinaciones en la IA debes:",
+        question: "Para crear imágenes de producto profesionales con IA debes:",
         options: [
-            "a) Proporcionar instrucciones claras y específicas",
-            "b) Aceptar todas las respuestas sin revisar",
-            "c) Compartir datos sensibles sin restricciones",
-            "d) Evitar revisar la fuente de información"
+            "a) Usar prompts vagos como 'una crema bonita'",
+            "b) Especificar tipo de imagen, producto, estilo y calidad",
+            "c) Nunca mencionar colores o iluminación",
+            "d) Aceptar la primera imagen sin iterar"
         ],
-        correct: "a"
+        correct: "b"
     },
     {
-        question: "¿Qué criterio NO es recomendable al evaluar herramientas de IA?",
+        question: "¿Qué criterio NO es apropiado al usar IA éticamente?",
         options: [
-            "a) Coste y modelo de suscripción",
-            "b) Accesibilidad e idioma disponible",
-            "c) Nivel de sofisticación de la programación interna",
-            "d) Privacidad y uso de datos"
+            "a) Revisar todas las respuestas antes de publicar",
+            "b) Ser transparente sobre el uso de IA",
+            "c) Compartir datos personales de clientes en prompts",
+            "d) Respetar derechos de autor"
         ],
         correct: "c"
     },
@@ -81,7 +81,6 @@ function init() {
 
 // Setup mobile optimizations
 function setupMobileOptimizations() {
-    // Prevent double-tap zoom on buttons
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(event) {
         const now = Date.now();
@@ -91,7 +90,6 @@ function setupMobileOptimizations() {
         lastTouchEnd = now;
     }, { passive: false });
     
-    // Handle viewport height for mobile browsers
     const setVH = () => {
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -101,7 +99,6 @@ function setupMobileOptimizations() {
     window.addEventListener('resize', setVH);
     window.addEventListener('orientationchange', setVH);
     
-    // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 }
 
@@ -129,7 +126,7 @@ function showModule(moduleId) {
     
     document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
     const navItems = document.querySelectorAll('.nav-item');
-    const moduleIndex = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'].indexOf(moduleId);
+    const moduleIndex = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6', 'evaluation'].indexOf(moduleId);
     if (navItems[moduleIndex]) {
         navItems[moduleIndex].classList.add('active');
     }
@@ -153,7 +150,7 @@ function showModule(moduleId) {
 
 // Progress bar update
 function updateProgress() {
-    const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'];
+    const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6', 'evaluation'];
     const currentIndex = modules.indexOf(currentModule);
     const progress = ((currentIndex + 1) / modules.length) * 100;
     const progressBar = document.getElementById('progressBar');
@@ -475,6 +472,72 @@ function generatePrompt() {
     localStorage.setItem('lastPrompt', prompt);
 }
 
+// Image prompt generator
+function generateImagePrompt() {
+    const product = document.getElementById('imageProduct').value.trim();
+    const style = document.getElementById('imageStyle').value;
+    const elements = document.getElementById('imageElements').value.trim();
+    const colors = document.getElementById('imageColors').value.trim();
+    
+    if (!product) {
+        showNotification('Por favor ingresa el nombre de tu producto', 'error');
+        return;
+    }
+    
+    if (!style) {
+        showNotification('Por favor selecciona un estilo', 'error');
+        return;
+    }
+    
+    let prompt = `Product photography of ${product}, ${style}`;
+    
+    if (elements) {
+        prompt += `, ${elements}`;
+    }
+    
+    if (colors) {
+        prompt += `, ${colors}`;
+    }
+    
+    prompt += ', high quality, professional photography, 8k, detailed';
+    
+    const outputDiv = document.getElementById('imagePromptOutput');
+    outputDiv.innerHTML = `
+        <strong>🎨 Tu prompt para generar imagen:</strong><br><br>
+        <div style="background: #F9FAFB; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-family: monospace; white-space: pre-wrap; word-break: break-word; border-left: 4px solid var(--primary);">
+            ${prompt}
+        </div>
+        <div style="background: #E6F4F6; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+            <strong>💡 Próximos pasos:</strong><br>
+            1. Copia este prompt<br>
+            2. Abre Canva Magic Media, Leonardo.ai, o ChatGPT<br>
+            3. Pega el prompt y genera tu imagen<br>
+            4. Itera ajustando colores, elementos o estilo si es necesario
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="btn btn-secondary" onclick="copyImagePrompt()" style="flex: 1; min-width: 150px;">📋 Copiar Prompt</button>
+        </div>
+    `;
+    
+    localStorage.setItem('lastImagePrompt', prompt);
+}
+
+// Copy image prompt to clipboard
+function copyImagePrompt() {
+    const promptText = localStorage.getItem('lastImagePrompt');
+    if (promptText) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(promptText).then(() => {
+                showNotification('¡Prompt de imagen copiado! Ahora pégalo en tu herramienta de IA favorita.', 'success');
+            }).catch(() => {
+                fallbackCopyToClipboard(promptText);
+            });
+        } else {
+            fallbackCopyToClipboard(promptText);
+        }
+    }
+}
+
 // Copy prompt to clipboard
 function copyPrompt() {
     const promptText = localStorage.getItem('lastPrompt');
@@ -774,11 +837,15 @@ function downloadResource(type) {
         },
         ethics: {
             name: 'ethics_checklist.pdf',
-            content: 'Checklist de Ética y Privacidad\n\n1. Transparencia\n2. Consentimiento\n3. Revisión humana\n4. Evaluación de sesgos\n5. Confidencialidad\n6. Legalidad\n7. Accesibilidad\n8. Auditoría'
+            content: 'Checklist de Ética y Privacidad\n\n1. Privacidad: No compartir datos personales\n2. Transparencia: Informar uso de IA\n3. Revisión: Verificar respuestas\n4. Sesgos: Evaluar y ajustar\n5. Derechos de autor: Respetar propiedad intelectual\n6. Expectativas: Ser clara sobre capacidades'
         },
         workflow: {
             name: 'workflow_templates.pdf',
             content: 'Plantillas de Flujos de Trabajo\n\n1. Ideación → Investigación → Síntesis → Análisis\n2. Entrada → Procesamiento IA → Validación → Salida\n3. Problema → Solución IA → Implementación → Medición'
+        },
+        images: {
+            name: 'image_prompts_guide.pdf',
+            content: 'Guía de Prompts para Imágenes de Producto\n\nEstructura:\n[Tipo] + [Producto] + [Estilo] + [Elementos] + [Iluminación] + [Colores] + [Calidad]\n\nEjemplos:\n1. Product photography of handmade soap, minimalist, white background, flowers, soft light, pastel colors, 8k\n2. Lifestyle image of coffee mug, natural setting, wooden table, morning light, warm tones, professional\n3. Flat lay of skincare products, top view, marble surface, gold accents, bright natural light, high quality'
         }
     };
     
@@ -929,7 +996,7 @@ function showNotification(message, type = 'info') {
 function handleKeyPress(e) {
     if (window.innerWidth <= 768) return;
     
-    const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'evaluation'];
+    const modules = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6', 'evaluation'];
     const currentIndex = modules.indexOf(currentModule);
     
     switch(e.key) {
