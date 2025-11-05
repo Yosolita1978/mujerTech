@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MujerTech - Transforma tu negocio con IA. Programa de 16 semanas para emprendedoras. Inicia Martes 2 de Diciembre.">
+    <title>MujerTech - Women Business & AI | Inscríbete Ahora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-logo">
+                <img src="bannerlogo1.png" alt="MujerTech Logo">
+            </div>
+            <h1 class="hero-title">Descubre Cómo la IA Puede Multiplicar Tu Productividad</h1>
+            <p class="hero-subtitle">Taller introductorio gratuito de 2 horas para emprendedoras</p>
+            
+            <div class="countdown-container">
+                <p class="countdown-label">🚀 El programa inicia en:</p>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">00</span>
+                        <span class="countdown-text">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-text">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-text">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-text">Segundos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-date">
+                <span class="date-icon">📅</span>
+                <strong>Taller Gratuito:</strong> Martes 2 de Diciembre, 2025 | 6:00 PM - 8:00 PM
+            </div>
+
+            <button class="cta-button primary-cta" onclick="scrollToRegistration()">
+                Reserva Tu Cupo Gratis
+            </button>
+
+            <p class="hero-notice">✨ Solo 30 cupos disponibles | 100% Online | Sin costo</p>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- Social Proof Banner -->
+    <div class="social-proof">
+        <div class="container">
+            <div class="proof-items">
+                <div class="proof-item">
+                    <span class="proof-number">500+</span>
+                    <span class="proof-text">Emprendedoras en Talleres</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">2</span>
+                    <span class="proof-text">Horas de Formación</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">100%</span>
+                    <span class="proof-text">Gratis y Online</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">4.9/5</span>
+                    <span class="proof-text">Calificación</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem/Solution Section -->
+    <section class="section problem-section">
+        <div class="container">
+            <h2 class="section-title">¿Sientes Que El Día No Te Alcanza?</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Necesitas hacer mil cosas a la vez</h3>
+                    <p>Marketing, ventas, atención al cliente, contabilidad... todo recae en ti y el tiempo no alcanza</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🎨</div>
+                    <h3>Quieres contenido profesional</h3>
+                    <p>Sabes que necesitas posts, imágenes y textos de calidad, pero no tienes las habilidades</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤔</div>
+                    <h3>No sabes por dónde empezar con IA</h3>
+                    <p>Has escuchado de ChatGPT y otras herramientas, pero no sabes cómo aplicarlas a TU negocio</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💪</div>
+                    <h3>Quieres hacer más tú misma</h3>
+                    <p>Sueñas con tener superpoderes para crear contenido, diseños y estrategias como las grandes empresas</p>
+                </div>
+            </div>
+
+            <div class="solution-box">
+                <h3>🎯 La Solución: IA para Emprendedoras</h3>
+                <p>Imagina poder crear posts de Instagram en 5 minutos, diseñar imágenes profesionales para promover tu producto, y generar ideas para crecer tunegocio.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="section learn-section">
+        <div class="container">
+            <h2 class="section-title">Lo Que Aprenderás en 2 Horas</h2>
+            <p class="section-subtitle">Un taller práctico y dinámico diseñado para emprendedoras sin experiencia técnica</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-number">01</div>
+                    <div class="module-icon">🤖</div>
+                    <h3>IA Generativa 101</h3>
+                    <ul>
+                        <li>Qué es y cómo funciona (sin tecnicismos)</li>
+                        <li>Mitos vs Realidad</li>
+                        <li>Casos de uso para TU negocio</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">02</div>
+                    <div class="module-icon">✍️</div>
+                    <h3>Crear Contenido Efectivo</h3>
+                    <ul>
+                        <li>La fórmula CTFT para prompts perfectos</li>
+                        <li>Práctica en vivo con ChatGPT</li>
+                        <li>Constructor de prompts interactivo</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">03</div>
+                    <div class="module-icon">🎨</div>
+                    <h3>Imágenes de Producto con IA</h3>
+                    <ul>
+                        <li>Herramientas gratuitas vs de pago</li>
+                        <li>Crea tu primera imagen profesional</li>
+                        <li>Ahorra miles en fotografía</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">04</div>
+                    <div class="module-icon">🔄</div>
+                    <h3>Flujos de Trabajo Prácticos</h3>
+                    <ul>
+                        <li>Automatiza tareas sin programar</li>
+                        <li>De la idea a la ejecución</li>
+                        <li>Investigación con IA en minutos</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">05</div>
+                    <div class="module-icon">🛡️</div>
+                    <h3>Ética y Buenas Prácticas</h3>
+                    <ul>
+                        <li>Privacidad y protección de datos</li>
+                        <li>Uso responsable de IA</li>
+                        <li>Qué herramientas usar y cuándo</li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">06</div>
+                    <div class="module-icon">🎁</div>
+                    <h3>Recursos Descargables</h3>
+                    <ul>
+                        <li>Biblioteca de 30+ prompts listos</li>
+                        <li>Guía de herramientas gratuitas</li>
+                        <li>Plantillas para tu negocio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonuses Section -->
+    <section class="section bonuses-section">
+        <div class="container">
+            <h2 class="section-title">Lo Que Recibirás GRATIS</h2>
+            
+            <div class="bonuses-grid">
+                <div class="bonus-card">
+                    <div class="bonus-badge">INCLUIDO</div>
+                    <div class="bonus-icon">📚</div>
+                    <h3>Biblioteca de 30+ Prompts</h3>
+                    <p>Plantillas listas para usar en tu negocio desde hoy mismo</p>
+                    <span class="bonus-value">Descargable</span>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-badge">INCLUIDO</div>
+                    <div class="bonus-icon">🎨</div>
+                    <h3>Guía de Imágenes con IA</h3>
+                    <p>50+ ejemplos de prompts para crear fotos profesionales de productos</p>
+                    <span class="bonus-value">Descargable</span>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-badge">INCLUIDO</div>
+                    <div class="bonus-icon">⚖️</div>
+                    <h3>Comparativa de Herramientas</h3>
+                    <p>Tabla con las mejores herramientas gratuitas vs de pago para tu negocio</p>
+                    <span class="bonus-value">Descargable</span>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-badge">INCLUIDO</div>
+                    <div class="bonus-icon">🎓</div>
+                    <h3>Certificado de Asistencia</h3>
+                    <p>Certificado digital que puedes compartir en LinkedIn</p>
+                    <span class="bonus-value">Digital</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps Section -->
+    <section class="section pricing-section">
+        <div class="container">
+            <h2 class="section-title">¿Qué Sigue Después del Taller?</h2>
+            
+            <div class="next-steps-container">
+                <div class="next-step-card workshop-card">
+                    <div class="step-badge">AHORA</div>
+                    <div class="step-icon">🎯</div>
+                    <h3>Taller Introductorio</h3>
+                    <p class="step-description">2 horas para descubrir el poder de la IA</p>
+                    <ul class="step-features">
+                        <li>✅ 100% Gratuito</li>
+                        <li>✅ Online en vivo</li>
+                        <li>✅ Martes 2 de Diciembre</li>
+                        <li>✅ Recursos descargables</li>
+                        <li>✅ Certificado de asistencia</li>
+                    </ul>
+                    <button class="step-button active-button" onclick="scrollToRegistration()">
+                        Reserva Tu Cupo Gratis
+                    </button>
+                </div>
+
+                <div class="next-step-card program-card">
+                    <div class="step-badge">DESPUÉS</div>
+                    <div class="step-icon">🚀</div>
+                    <h3>Programa Completo MujerTech</h3>
+                    <p class="step-description">16 semanas para dominar la IA en tu negocio</p>
+                    <ul class="step-features">
+                        <li>✨ 64 horas de formación</li>
+                        <li>✨ 15+ herramientas de IA</li>
+                        <li>✨ Mentoría personalizada</li>
+                        <li>✨ Comunidad privada</li>
+                        <li>✨ Certificado profesional</li>
+                    </ul>
+                    <div class="program-info">
+                        <p><strong>Se presenta en el taller</strong></p>
+                        <p class="program-price">Descuento especial para asistentes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <h3>💡 El Taller Gratuito Es Tu Primer Paso</h3>
+                <p style="text-align: center; margin-bottom: 1rem;">En las 2 horas del taller descubrirás si la IA es para ti y cómo puede transformar tu negocio. Si te encanta (y estamos seguras de que sí), conocerás todos los detalles del programa completo de 16 semanas.</p>
+                <p style="text-align: center; color: var(--primary); font-weight: 600;">¡No tienes nada que perder y mucho que ganar!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="section registration-section" id="registration">
+        <div class="container">
+            <div class="registration-container">
+                <div class="registration-info">
+                    <h2>Reserva Tu Cupo Gratis</h2>
+                    <p class="registration-subtitle">Quedan solo <span id="spotsLeft">30</span> cupos disponibles</p>
+                    
+                    <div class="registration-benefits">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">✅</span>
+                            <span>Taller 100% gratuito y online</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">✅</span>
+                            <span>Martes 2 Dic | 6:00 PM - 8:00 PM</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">✅</span>
+                            <span>Recursos descargables incluidos</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">✅</span>
+                            <span>Certificado digital de asistencia</span>
+                        </div>
+                    </div>
+
+
+                <div class="registration-form-container">
+                    <form class="registration-form" id="registrationForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo *</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">WhatsApp *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+57 300 123 4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="business">Tu Negocio o Emprendimiento *</label>
+                            <input type="text" id="business" name="business" required placeholder="Ej: Cosmética natural">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">¿Has usado IA antes? *</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="nunca">Nunca la he usado</option>
+                                <option value="poco">La he usado muy poco</option>
+                                <option value="ocasional">La uso ocasionalmente</option>
+                                <option value="frecuente">La uso frecuentemente</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Acepto recibir el link del taller por email y WhatsApp *</label>
+                        </div>
+
+                        <button type="submit" class="submit-button">
+                            🎉 Confirmar Mi Cupo Gratis
+                        </button>
+
+                        <p class="form-notice">
+                            <span class="lock-icon">🔒</span>
+                            Tus datos están seguros. Cero spam.
+                        </p>
+                    </form>
+
+                    <div class="success-message" id="successMessage" style="display: none;">
+                        <div class="success-icon">🎉</div>
+                        <h3>¡Cupo Reservado!</h3>
+                        <p>Gracias por inscribirte al taller de MujerTech. Te enviaremos el link de Zoom 24 horas antes del evento.</p>
+                        <p class="success-email">Confirmación enviada a <strong id="confirmedEmail"></strong></p>
+                        <p style="margin-top: 1rem; color: var(--primary); font-weight: 600;">📅 Guarda la fecha: Martes 2 de Diciembre, 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿El taller realmente es gratis?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, 100% gratis. No hay letra pequeña ni cargos ocultos. Es nuestro regalo para emprendedoras que quieren descubrir el poder de la IA. Solo necesitas tu computadora o celular y conexión a internet.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Necesito conocimientos técnicos previos?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>¡Para nada! El taller está diseñado para emprendedoras sin experiencia técnica. Te enseñamos desde cero, con explicaciones claras y ejemplos prácticos. Si sabes usar WhatsApp, puedes aprender IA.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Necesito tener un negocio ya establecido?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. El taller es perfecto tanto si ya tienes un negocio como si apenas estás comenzando o incluso si solo tienes una idea. La IA puede ayudarte en cualquier etapa.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿El taller queda grabado?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, te enviaremos la grabación por email 24 horas después del taller. Pero te recomendamos asistir en vivo porque haremos ejercicios prácticos en tiempo real y podrás hacer preguntas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Qué plataforma usan para el taller?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Usamos Zoom. Te enviaremos el link de acceso 24 horas antes del taller por email y WhatsApp. Solo necesitas hacer click en el link a la hora indicada.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Me van a vender algo durante el taller?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Al final del taller te contaremos sobre nuestro programa completo de 16 semanas para quienes quieran profundizar. Pero no hay presión - el taller gratuito tiene valor por sí mismo y aprenderás cosas que puedes aplicar inmediatamente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Recibiré certificado?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, recibirás un certificado digital de asistencia al taller que puedes compartir en LinkedIn. Te lo enviaremos junto con los recursos descargables.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Qué pasa si no puedo asistir en vivo?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No hay problema. Te enviaremos la grabación completa para que la veas cuando puedas. Sin embargo, la experiencia en vivo es mucho mejor porque podrás hacer preguntas y practicar con nosotras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section final-cta-section">
+        <div class="container">
+            <div class="final-cta-box">
+                <h2>No Te Quedes Atrás en la Revolución de la IA</h2>
+                <p class="final-cta-text">Cada día, más emprendedoras están descubriendo cómo la IA puede multiplicar su productividad. Este taller gratuito es tu oportunidad de dar el primer paso sin ningún riesgo.</p>
+                
+                <div class="final-stats">
+                    <div class="final-stat">
+                        <div class="stat-number">20</div>
+                        <div class="stat-text">Cupos Totales</div>
+                    </div>
+                    <div class="final-stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-text">Ya Reservados</div>
+                    </div>
+                    <div class="final-stat">
+                        <div class="stat-number">15</div>
+                        <div class="stat-text">Cupos Disponibles</div>
+                    </div>
+                </div>
+
+                <button class="cta-button primary-cta large-cta" onclick="scrollToRegistration()">
+                    Reservar Mi Cupo Gratis - 2 de Diciembre
+                </button>
+
+                <p class="final-notice">✨ 100% Gratuito | 100% Online | 100% Práctico</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logomujertech1.png" alt="MujerTech">
+                        <span>Mujer Tech</span>
+                    </div>
+                    <p>Empoderando a emprendedoras latinas con Inteligencia Artificial</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>📧 hola@mujertech.org</li>
+                        <li>📱 WhatsApp: +57 300 123 4567</li>
+                        <li>🌎 Bogotá, Colombia</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">TikTok</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 MujerTech. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/573001234567?text=Hola!%20Quiero%20información%20sobre%20MujerTech" class="whatsapp-float" target="_blank">
+        <span class="whatsapp-icon">💬</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
