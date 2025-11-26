@@ -898,3 +898,157 @@ textarea:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ===================================
+   PDF EXPORT STYLES
+   =================================== */
+   body.pdf-mode {
+    background: white;
+}
+
+body.pdf-mode .header,
+body.pdf-mode .timer-container,
+body.pdf-mode .mobile-menu-toggle,
+body.pdf-mode .btn-group,
+body.pdf-mode .quiz-container,
+body.pdf-mode .prompt-builder,
+body.pdf-mode #mythsActivity,
+body.pdf-mode .activity-box button,
+body.pdf-mode #customerQuestions {
+    display: none !important;
+}
+
+body.pdf-mode .main {
+    margin-top: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+body.pdf-mode .module {
+    display: block !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+body.pdf-mode .module:last-child {
+    page-break-after: avoid;
+}
+
+body.pdf-mode .module-header {
+    background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%);
+    color: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+body.pdf-mode .module-header .module-title {
+    color: white;
+}
+
+body.pdf-mode .module-header .module-subtitle {
+    color: rgba(255,255,255,0.9);
+}
+
+body.pdf-mode .card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+}
+
+body.pdf-mode .resources-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+body.pdf-mode .resource-card {
+    min-height: auto;
+    padding: 1rem;
+}
+
+body.pdf-mode .resource-card .btn {
+    display: none;
+}
+
+body.pdf-mode .activity-box {
+    page-break-inside: avoid;
+}
+
+body.pdf-mode .checklist-icon {
+    border: 2px solid var(--primary);
+    background: white;
+}
+
+body.pdf-mode .checklist-icon::after {
+    display: none;
+}
+
+/* PDF cover page */
+.pdf-cover {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+    page-break-after: always;
+}
+
+body.pdf-mode .pdf-cover {
+    display: block;
+}
+
+.pdf-cover h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.pdf-cover p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+}
+
+.pdf-cover .pdf-date {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .header,
+    .timer-container,
+    .mobile-menu-toggle,
+    .btn-group,
+    .quiz-container,
+    .prompt-builder,
+    #mythsActivity,
+    .activity-box button,
+    #customerQuestions,
+    .nav {
+        display: none !important;
+    }
+    
+    .main {
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .module {
+        display: block !important;
+        page-break-after: always;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+    
+    .pdf-cover {
+        display: block;
+    }
+}

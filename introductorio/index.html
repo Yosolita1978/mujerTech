@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MujerTech - Women Business & AI | Taller Introductorio</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
+    <!-- PDF Cover Page (hidden until export) -->
+    <div class="pdf-cover" id="pdfCover">
+        <div style="margin-top: 3rem;">
+            <h1 style="font-size: 2.5rem; background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">MujerTech</h1>
+            <p style="font-size: 1.3rem; color: #232443; margin-top: 0.5rem;">Women Business & AI</p>
+        </div>
+        <div style="margin-top: 3rem;">
+            <h2 style="font-size: 1.8rem; color: #232443;">Taller Introductorio</h2>
+            <p style="font-size: 1.1rem; color: #6B7280; margin-top: 1rem;">Transforma tu negocio con Inteligencia Artificial</p>
+        </div>
+        <div style="margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, rgba(44, 142, 156, 0.1) 0%, rgba(255, 105, 120, 0.1) 100%); border-radius: 1rem;">
+            <p style="font-size: 1rem; color: #232443;"><strong>Contenido:</strong></p>
+            <ul style="text-align: left; max-width: 400px; margin: 1rem auto; line-height: 2;">
+                <li>Módulo 1: IA Generativa 101</li>
+                <li>Módulo 2: Prompting Efectivo</li>
+                <li>Módulo 3: Flujos de Trabajo con IA</li>
+                <li>Módulo 4: Práctica - IA para Imágenes</li>
+                <li>Módulo 5: Ética y Buenas Prácticas</li>
+                <li>Módulo 6: Recursos Descargables</li>
+            </ul>
+        </div>
+        <p class="pdf-date" id="pdfDate"></p>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #6B7280;">www.mujertech.org</p>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -126,7 +152,6 @@
                 <h3 class="activity-title">🎯 Actividad: Identifica Mitos vs Realidad</h3>
                 <p>Arrastra cada afirmación a la categoría correcta:</p>
                 <div id="mythsActivity" style="margin-top: 1rem;">
-                    <!-- Activity will be populated by JavaScript -->
                 </div>
             </div>
 
@@ -339,7 +364,6 @@
                 </div>
                 
                 <div id="customerQuestions" style="display: none; margin-top: 1.5rem;">
-                    <!-- Questions will be generated here -->
                 </div>
             </div>
 
@@ -543,7 +567,7 @@
             </div>
         </section>
 
-        <!-- Module 5: Ethics (Versión Corta) -->
+        <!-- Module 5: Ethics -->
         <section class="module" id="module5">
             <div class="module-header">
                 <h1 class="module-title">Módulo 5: Ética y Buenas Prácticas</h1>
@@ -683,6 +707,14 @@
             </div>
 
             <div class="resources-grid">
+                <!-- PDF Export Button -->
+                <div class="resource-card" onclick="exportToPDF()" style="border-color: var(--secondary); background: linear-gradient(135deg, rgba(255, 105, 120, 0.05) 0%, rgba(44, 142, 156, 0.05) 100%);">
+                    <div class="resource-icon">📄</div>
+                    <h3>Descargar Taller Completo</h3>
+                    <p>Todo el contenido del taller en PDF para revisar offline</p>
+                    <button class="btn btn-secondary" style="margin-top: 1rem; border-color: var(--secondary); color: var(--secondary);">Exportar PDF</button>
+                </div>
+
                 <div class="resource-card" onclick="downloadResource('prompts')">
                     <div class="resource-icon">📝</div>
                     <h3>Biblioteca de Prompts</h3>

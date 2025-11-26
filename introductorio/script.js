@@ -1085,3 +1085,72 @@ document.addEventListener('touchend', function(event) {
     }
     lastTouchEnd = now;
 }, false);
+
+// Export to PDF function
+function exportToPDF() {
+    showNotification('Generando PDF... Esto puede tardar unos segundos.', 'info');
+    
+    // Set the date on cover page
+    const dateElement = document.getElementById('pdfDate');
+    if (dateElement) {
+        dateElement.textContent = `Generado: ${new Date().toLocaleDateString('es-ES', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        })}`;
+    }
+    
+    // Add PDF mode class
+    document.body.classList.add('pdf-mode');
+    
+    // Create a container for PDF content
+    const pdfContent = document.createElement('div');
+    pdfContent.id = 'pdf-export-content';
+    
+    // Clone cover page
+    const cover = document.getElementById('pdfCover').cloneNode(true);
+    cover.style.display = 'block';
+    pdfContent.appendChild(cover);
+    
+    // Clone all modules (except evaluation which is interactive)
+    const modulesToExport = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6'];
+    modulesToExport.forEach(moduleId => {
+        const module = document.getElementById(moduleId);
+        if (module) {
+            const clone = module.cloneNode(true);
+            clone.style.display = 'block';
+            clone.classList.remove('active');
+            pdfContent.appendChild(clone);
+        }
+    });
+    
+    // PDF options
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'MujerTech_Taller_IA.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            letterRendering: true,
+            logging: false
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait' 
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+    
+    // Generate PDF
+    html2pdf().set(opt).from(pdfContent).save().then(() => {
+        // Remove PDF mode class
+        document.body.classList.remove('pdf-mode');
+        showNotification('¡PDF descargado exitosamente!', 'success');
+    }).catch(err => {
+        document.body.classList.remove('pdf-mode');
+        console.error('Error generating PDF:', err);
+        showNotification('Error al generar el PDF. Intenta de nuevo.', 'error');
+    });
+}
