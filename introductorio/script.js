@@ -1103,49 +1103,30 @@ function exportToPDF() {
     // Add PDF mode class
     document.body.classList.add('pdf-mode');
     
-    // Create a container for PDF content
-    const pdfContent = document.createElement('div');
-    pdfContent.id = 'pdf-export-content';
-    
-    // Clone cover page
-    const cover = document.getElementById('pdfCover').cloneNode(true);
-    cover.style.display = 'block';
-    pdfContent.appendChild(cover);
-    
-    // Clone all modules (except evaluation which is interactive)
-    const modulesToExport = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6'];
-    modulesToExport.forEach(moduleId => {
-        const module = document.getElementById(moduleId);
-        if (module) {
-            const clone = module.cloneNode(true);
-            clone.style.display = 'block';
-            clone.classList.remove('active');
-            pdfContent.appendChild(clone);
-        }
-    });
-    
-    // PDF options
+    // PDF options with reduced scale
     const opt = {
         margin: [10, 10, 10, 10],
         filename: 'MujerTech_Taller_IA.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg', quality: 0.9 },
         html2canvas: { 
-            scale: 2,
+            scale: 1,
             useCORS: true,
-            letterRendering: true,
-            logging: false
+            logging: false,
+            windowWidth: 800
         },
         jsPDF: { 
             unit: 'mm', 
             format: 'a4', 
             orientation: 'portrait' 
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        pagebreak: { mode: 'css', before: '.module', avoid: '.card' }
     };
     
+    // Get the main content area
+    const element = document.querySelector('.main');
+    
     // Generate PDF
-    html2pdf().set(opt).from(pdfContent).save().then(() => {
-        // Remove PDF mode class
+    html2pdf().set(opt).from(element).save().then(() => {
         document.body.classList.remove('pdf-mode');
         showNotification('¡PDF descargado exitosamente!', 'success');
     }).catch(err => {
