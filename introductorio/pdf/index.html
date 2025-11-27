@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MujerTech - Introductory AI for Business Workshop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c8e9c;
+            --secondary: #ff6978;
+            --dark: #232443;
+            --light: #fffcf9;
+            --gray: #6B7280;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: white;
+            font-size: 11pt;
+        }
+        
+        .page {
+            page-break-after: always;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .page:last-child {
+            page-break-after: avoid;
+        }
+        
+        /* Cover Page */
+        .cover {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(44, 142, 156, 0.1) 0%, rgba(255, 105, 120, 0.1) 100%);
+        }
+        
+        .cover h1 {
+            font-size: 42pt;
+            background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .cover .tagline {
+            font-size: 16pt;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+        
+        .cover h2 {
+            font-size: 24pt;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .cover .subtitle {
+            font-size: 14pt;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        .toc {
+            text-align: left;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+        }
+        
+        .toc h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 14pt;
+        }
+        
+        .toc ul {
+            list-style: none;
+        }
+        
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 11pt;
+        }
+        
+        .toc li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Module Headers */
+        .module-header {
+            background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .module-header h1 {
+            font-size: 20pt;
+            margin-bottom: 8px;
+        }
+        
+        .module-header p {
+            font-size: 12pt;
+            opacity: 0.9;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 10pt;
+            margin-top: 10px;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 14pt;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-icon {
+            font-size: 18pt;
+        }
+        
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .col-box {
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .col-box.positive {
+            background: #E6F4F6;
+            border-color: var(--primary);
+        }
+        
+        .col-box.negative {
+            background: #FFE8EB;
+            border-color: var(--secondary);
+        }
+        
+        .col-box h4 {
+            margin-bottom: 10px;
+            font-size: 11pt;
+        }
+        
+        .col-box ul {
+            padding-left: 20px;
+            font-size: 10pt;
+        }
+        
+        .col-box li {
+            margin-bottom: 5px;
+        }
+        
+        /* Formula Box */
+        .formula-box {
+            background: #F3F4F6;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .formula-box h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .formula-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .formula-letter {
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+        
+        /* Use Cases Grid */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .use-case {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .use-case-icon {
+            font-size: 24pt;
+            margin-bottom: 8px;
+        }
+        
+        .use-case h4 {
+            font-size: 10pt;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .use-case p {
+            font-size: 9pt;
+            color: var(--gray);
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .tool-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .tool-card-icon {
+            font-size: 20pt;
+            margin-bottom: 8px;
+        }
+        
+        .tool-card h4 {
+            font-size: 11pt;
+            margin-bottom: 5px;
+        }
+        
+        .tool-card .price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 10pt;
+        }
+        
+        .tool-card p {
+            font-size: 9pt;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        /* Workflow */
+        .workflow {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 25px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .workflow-step {
+            text-align: center;
+        }
+        
+        .workflow-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28pt;
+            margin: 0 auto 8px;
+            color: white;
+        }
+        
+        .workflow-step:nth-child(1) .workflow-circle { background: var(--primary); }
+        .workflow-step:nth-child(3) .workflow-circle { background: var(--secondary); }
+        .workflow-step:nth-child(5) .workflow-circle { background: var(--dark); }
+        .workflow-step:nth-child(7) .workflow-circle { background: #ff9a88; }
+        
+        .workflow-arrow {
+            font-size: 24pt;
+            color: var(--primary);
+        }
+        
+        .workflow-step strong {
+            font-size: 10pt;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 10pt;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--primary);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        /* Tip Box */
+        .tip-box {
+            background: #FEF9C3;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        
+        /* Example Boxes */
+        .example-correct {
+            padding: 12px;
+            background: white;
+            border-left: 4px solid #10B981;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .example-incorrect {
+            padding: 12px;
+            background: white;
+            border-left: 4px solid #EF4444;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        /* Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .resource-icon {
+            font-size: 28pt;
+            margin-bottom: 10px;
+        }
+        
+        .resource-card h3 {
+            font-size: 11pt;
+            margin-bottom: 8px;
+        }
+        
+        .resource-card p {
+            font-size: 9pt;
+            color: var(--gray);
+        }
+        
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .cta-box h2 {
+            font-size: 16pt;
+            margin-bottom: 10px;
+        }
+        
+        .cta-box p {
+            font-size: 11pt;
+            margin-bottom: 15px;
+        }
+        
+        .cta-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .cta-content ul {
+            padding-left: 20px;
+        }
+        
+        .cta-content li {
+            margin-bottom: 5px;
+        }
+        
+        /* Code/Prompt Box */
+        .prompt-example {
+            background: #F9FAFB;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 10pt;
+            line-height: 1.8;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* Automation Grid */
+        .automation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .automation-item {
+            padding: 15px;
+            background: #F3F4F6;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .automation-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .automation-item p {
+            font-size: 9pt;
+            color: var(--gray);
+        }
+        
+        /* Three Column Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .benefit-item {
+            background: #E6F4F6;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .benefit-item h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+        
+        .benefit-item p {
+            font-size: 9pt;
+        }
+        
+        /* Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .principle-item {
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .principle-item:nth-child(1) {
+            background: #E6F4F6;
+            border-color: var(--primary);
+        }
+        
+        .principle-item:nth-child(2) {
+            background: #FFE8EB;
+            border-color: var(--secondary);
+        }
+        
+        .principle-item:nth-child(3) {
+            background: #FEF9C3;
+            border-color: #F59E0B;
+        }
+        
+        .principle-item h4 {
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+        
+        .principle-item p {
+            font-size: 9pt;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 10pt;
+            }
+            
+            .page {
+                padding: 30px;
+                page-break-after: always;
+            }
+            
+            .card, .module-header, .cta-box {
+                box-shadow: none !important;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+        
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 9pt;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="page cover">
+    <h1>MujerTech</h1>
+    <p class="tagline">Women Business & AI</p>
+    
+    <h2>Introductory Workshop</h2>
+    <p class="subtitle">Transform your business with Artificial Intelligence</p>
+    
+    <div class="toc">
+        <h3>📚 Workshop Content</h3>
+        <ul>
+            <li>📖 Module 1: Generative AI 101 — Fundamentals</li>
+            <li>📖 Module 2: Effective Prompting — How to ask AI</li>
+            <li>📖 Module 3: AI Workflows</li>
+            <li>📖 Module 4: Practice — AI for Product Images</li>
+            <li>📖 Module 5: Ethics and Best Practices</li>
+            <li>📖 Module 6: Downloadable Resources</li>
+        </ul>
+    </div>
+    
+    <p style="margin-top: 40px; font-size: 10pt; color: var(--gray);">⏱️ Total duration: 2 hours</p>
+    <p style="margin-top: 20px; font-size: 10pt; color: var(--gray);">www.mujertech.org</p>
+</div>
+
+<!-- WELCOME PAGE -->
+<div class="page">
+    <div class="module-header">
+        <h1>Welcome to the Workshop!</h1>
+        <p>Transform your business with Artificial Intelligence in just 2 hours</p>
+        <span class="time-badge">⏱️ Total duration: 2 hours</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🎯</span>
+            What you'll learn today
+        </h2>
+        <ul style="padding-left: 25px; line-height: 2;">
+            <li>Fundamentals of Generative Artificial Intelligence for your business</li>
+            <li>Techniques for creating effective content with AI assistance</li>
+            <li>Automated workflows without needing to code</li>
+            <li>Hands-on practice creating product images with AI</li>
+            <li>Ethical and privacy considerations</li>
+            <li>Practical tools you can use TODAY</li>
+        </ul>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">📋</span>
+            Pre-assessment: What's your experience with AI?
+        </h2>
+        <ul class="checklist">
+            <li><span class="checkbox"></span> I've never used it</li>
+            <li><span class="checkbox"></span> I know what it is but haven't applied it</li>
+            <li><span class="checkbox"></span> I use it occasionally</li>
+            <li><span class="checkbox"></span> I use it frequently</li>
+        </ul>
+    </div>
+    
+    <div class="page-footer">MujerTech — Women Business & AI | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 1: Generative AI 101 -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 1: Generative AI 101</h1>
+        <p>Demystifying Artificial Intelligence</p>
+        <span class="time-badge">⏱️ 25 minutes</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🤖</span>
+            What is Generative Artificial Intelligence?
+        </h2>
+        <p style="margin-bottom: 15px;">Generative AI consists of models that learn patterns from massive datasets to create new content: text, images, audio. Think of it as your personal creative assistant.</p>
+        
+        <div class="two-col">
+            <div class="col-box positive">
+                <h4 style="color: var(--primary);">✅ What it CAN do</h4>
+                <ul>
+                    <li>Generate creative ideas</li>
+                    <li>Create content drafts</li>
+                    <li>Summarize information</li>
+                    <li>Translate texts</li>
+                </ul>
+            </div>
+            <div class="col-box negative">
+                <h4 style="color: var(--secondary);">❌ What it CANNOT do</h4>
+                <ul>
+                    <li>Think for itself</li>
+                    <li>Replace your judgment</li>
+                    <li>Guarantee 100% accuracy</li>
+                    <li>Work without supervision</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">💡</span>
+            Use Cases for Your Business
+        </h2>
+        <div class="use-cases">
+            <div class="use-case">
+                <div class="use-case-icon">📱</div>
+                <h4>Digital Marketing</h4>
+                <p>Social media posts, emails, copy</p>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">🔍</div>
+                <h4>Research</h4>
+                <p>Market and competitor analysis</p>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">👥</div>
+                <h4>Customer Service</h4>
+                <p>FAQs and automated responses</p>
+            </div>
+            <div class="use-case">
+                <div class="use-case-icon">✨</div>
+                <h4>Product Development</h4>
+                <p>Names, descriptions, ideas</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🎯</span>
+            Activity: Myths vs Reality
+        </h2>
+        <p style="margin-bottom: 15px;">Classify each statement:</p>
+        <div class="two-col">
+            <div>
+                <strong style="color: var(--secondary);">❌ MYTHS:</strong>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>AI can think for itself</li>
+                    <li>AI completely replaces human judgment</li>
+                    <li>AI always gives 100% accurate answers</li>
+                </ul>
+            </div>
+            <div>
+                <strong style="color: var(--primary);">✅ REALITY:</strong>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>AI learns from data patterns</li>
+                    <li>AI can generate text and images</li>
+                    <li>AI requires human supervision</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 1: Generative AI 101 | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 2: Effective Prompting -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 2: Effective Prompting</h1>
+        <p>The art of giving instructions to AI</p>
+        <span class="time-badge">⏱️ 30 minutes</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">📝</span>
+            Structure of a Good AI Message (Prompt)
+        </h2>
+        
+        <div class="formula-box">
+            <h4>The CTFT Formula:</h4>
+            <div class="formula-item">
+                <span class="formula-letter">C</span>
+                <div><strong>Context:</strong> Who you are and what role AI assumes</div>
+            </div>
+            <div class="formula-item">
+                <span class="formula-letter">T</span>
+                <div><strong>Task:</strong> Specific action you need</div>
+            </div>
+            <div class="formula-item">
+                <span class="formula-letter">F</span>
+                <div><strong>Format:</strong> How you want the response</div>
+            </div>
+            <div class="formula-item">
+                <span class="formula-letter">T</span>
+                <div><strong>Tone:</strong> Desired communication style</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🛠️</span>
+            Complete Prompt Example
+        </h2>
+        <div class="prompt-example">
+            <strong style="color: var(--primary);">Context:</strong> You are a marketing advisor for women entrepreneurs in Latin America<br><br>
+            <strong style="color: var(--primary);">Task:</strong> I need to create 3 Instagram posts about natural cosmetics<br><br>
+            <strong style="color: var(--primary);">Format:</strong> List with emojis, maximum 150 characters each<br><br>
+            <strong style="color: var(--primary);">Tone:</strong> Friendly, motivating and professional
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">💡</span>
+            Best Practices
+        </h2>
+        <ul class="checklist">
+            <li><span class="checkbox"></span> <strong>Be specific</strong> in your instructions</li>
+            <li><span class="checkbox"></span> <strong>Provide examples</strong> when possible</li>
+            <li><span class="checkbox"></span> <strong>Review and adjust</strong> the responses</li>
+            <li><span class="checkbox"></span> <strong>Iterate:</strong> improve your prompt based on results</li>
+            <li><span class="checkbox"></span> <strong>Verify</strong> the generated information</li>
+        </ul>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 2: Effective Prompting | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 3: AI Workflows -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 3: AI Workflows</h1>
+        <p>Automate your research and processes</p>
+        <span class="time-badge">⏱️ 30 minutes</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🔄</span>
+            Basic Workflow
+        </h2>
+        <div class="workflow">
+            <div class="workflow-step">
+                <div class="workflow-circle">💭</div>
+                <strong>Business Ideas</strong>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">
+                <div class="workflow-circle">🔍</div>
+                <strong>Research</strong>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">
+                <div class="workflow-circle">📊</div>
+                <strong>Synthesis</strong>
+            </div>
+            <span class="workflow-arrow">→</span>
+            <div class="workflow-step">
+                <div class="workflow-circle">🎯</div>
+                <strong>Analysis</strong>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🔬</span>
+            Mini-Experiment: Customer Questions Mapping
+        </h2>
+        <ol style="padding-left: 25px; line-height: 2;">
+            <li>Define your business idea</li>
+            <li>Use AI to generate "frequently asked customer questions"</li>
+            <li>Group questions by common themes</li>
+            <li>Synthesize the main findings</li>
+            <li>Reflect on limitations and next steps</li>
+        </ol>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">⚡</span>
+            No-Code Automation
+        </h2>
+        <p style="margin-bottom: 15px;">Tools you can connect without programming:</p>
+        <div class="automation-grid">
+            <div class="automation-item">
+                <strong>ChatGPT + Google Sheets</strong>
+                <p>Data analysis</p>
+            </div>
+            <div class="automation-item">
+                <strong>Zapier + Email</strong>
+                <p>Automated responses</p>
+            </div>
+            <div class="automation-item">
+                <strong>Notion AI + Calendar</strong>
+                <p>Task management</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 3: AI Workflows | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 4: AI for Images - Page 1 -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 4: Practice - AI for Product Images</h1>
+        <p>Create professional images to position your product</p>
+        <span class="time-badge">⏱️ 25 minutes</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🎨</span>
+            Why use AI for product images?
+        </h2>
+        <p style="margin-bottom: 15px;">Images are crucial for selling online. AI allows you to create professional visualizations without a photographer or designer.</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h4>💰 Savings</h4>
+                <p>Avoid costs of $500-2000 USD per photo session</p>
+            </div>
+            <div class="benefit-item">
+                <h4>⚡ Speed</h4>
+                <p>Generate multiple versions in minutes, not days</p>
+            </div>
+            <div class="benefit-item">
+                <h4>🎯 Customization</h4>
+                <p>Adapt images for different markets and seasons</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🛠️</span>
+            Recommended Tools
+        </h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-card-icon">🎨</div>
+                <h4>Canva Magic Media</h4>
+                <p class="price">Free/Pro: $15 USD/month</p>
+                <p>Ideal for beginners. User-friendly interface.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-card-icon">✨</div>
+                <h4>Leonardo.ai</h4>
+                <p class="price">150 free credits/day</p>
+                <p>High quality. Multiple styles.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-card-icon">🖼️</div>
+                <h4>Midjourney</h4>
+                <p class="price">$10 USD/month</p>
+                <p>Professional results. Learning curve.</p>
+            </div>
+            <div class="tool-card">
+                <div class="tool-card-icon">📸</div>
+                <h4>DALL-E 3 (ChatGPT)</h4>
+                <p class="price">Included in ChatGPT Plus</p>
+                <p>Integrated with chat. Easy to use.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 4: AI for Images | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 4: AI for Images - Page 2 -->
+<div class="page">
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">📋</span>
+            Formula for Image Prompts
+        </h2>
+        <div class="prompt-example">
+            <strong style="color: var(--primary);">Basic structure:</strong><br><br>
+            [Image type] + [Specific product] + [Visual style] + [Complementary elements] + [Lighting] + [Colors] + [Quality]<br><br>
+            <strong style="color: var(--secondary);">Example:</strong><br>
+            "Product photography of natural aloe vera facial cream in elegant glass jar, minimalist style, white background, surrounded by fresh aloe leaves and water drops, soft natural lighting, green and white tones, high resolution, professional quality, 8k"
+        </div>
+        
+        <div class="tip-box">
+            <strong>💡 Pro Tip:</strong> Always add "high quality, professional photography, 8k" at the end for better results.
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🎯</span>
+            Image Prompt Builder
+        </h2>
+        <p style="margin-bottom: 15px;">Complete these fields to create your prompt:</p>
+        <ol style="padding-left: 25px; line-height: 2.5;">
+            <li><strong>What product do you sell?</strong> ___________________________</li>
+            <li><strong>What style do you want?</strong> □ Minimalist □ Lifestyle □ Professional □ Flat Lay □ Mockup</li>
+            <li><strong>What additional elements?</strong> ___________________________</li>
+            <li><strong>What dominant colors?</strong> ___________________________</li>
+        </ol>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">⚠️</span>
+            Common Mistakes to Avoid
+        </h2>
+        <ul class="checklist">
+            <li><span class="checkbox"></span> <strong>Too vague prompts:</strong> "A cream" → "Hydrating facial cream in amber glass container"</li>
+            <li><span class="checkbox"></span> <strong>Forgetting context:</strong> Specify "product photography" or "advertising image"</li>
+            <li><span class="checkbox"></span> <strong>Not mentioning quality:</strong> Always include "high quality, professional"</li>
+            <li><span class="checkbox"></span> <strong>Ignoring the brand:</strong> If you have a logo, mention "with space for logo"</li>
+            <li><span class="checkbox"></span> <strong>Not iterating:</strong> Generate 3-5 versions and choose the best one</li>
+        </ul>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 4: AI for Images | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 5: Ethics -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 5: Ethics and Best Practices</h1>
+        <p>Use AI responsibly</p>
+        <span class="time-badge">⏱️ 10 minutes</span>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🛡️</span>
+            Essential Principles
+        </h2>
+        <div class="principles-grid">
+            <div class="principle-item">
+                <h4 style="color: var(--primary);">🔒 Privacy</h4>
+                <p>NEVER share sensitive customer data (names, emails, card numbers) in AI prompts.</p>
+            </div>
+            <div class="principle-item">
+                <h4 style="color: var(--secondary);">👁️ Transparency</h4>
+                <p>Inform your customers when you use AI-generated content, especially in images.</p>
+            </div>
+            <div class="principle-item">
+                <h4 style="color: #F59E0B;">✅ Supervision</h4>
+                <p>Always review and validate AI responses before publishing or sending to customers.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">⚖️</span>
+            Quick Tool Comparison
+        </h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Cost</th>
+                        <th>Best for</th>
+                        <th>Privacy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ChatGPT Free</strong></td>
+                        <td>$0</td>
+                        <td>General content</td>
+                        <td>⚠️ Public</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ChatGPT Plus</strong></td>
+                        <td>$20 USD/month</td>
+                        <td>Heavy use</td>
+                        <td>✅ Enhanced</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude.ai</strong></td>
+                        <td>$0-20 USD/month</td>
+                        <td>Long analysis</td>
+                        <td>✅ High</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Canva Magic</strong></td>
+                        <td>$15 USD/month</td>
+                        <td>Visual design</td>
+                        <td>✅ High</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">🎯</span>
+            Ethical Use Cases
+        </h2>
+        <div class="example-correct">
+            <strong style="color: #10B981;">✅ CORRECT:</strong> "Generate ideas for Instagram posts about my natural products line"
+        </div>
+        <div class="example-incorrect">
+            <strong style="color: #EF4444;">❌ INCORRECT:</strong> "Analyze these 50 customer emails: [includes real names and emails]"
+        </div>
+        <div class="example-correct">
+            <strong style="color: #10B981;">✅ CORRECT:</strong> "Create a mockup-style product image for my facial cream"
+        </div>
+        <div class="example-incorrect">
+            <strong style="color: #EF4444;">❌ INCORRECT:</strong> "Generate an image of [famous celebrity] using my product"
+        </div>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 5: Ethics and Best Practices | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 5: Ethics Checklist -->
+<div class="page">
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">✅</span>
+            Responsible Use Checklist
+        </h2>
+        <ul class="checklist">
+            <li><span class="checkbox"></span> <strong>Privacy:</strong> Do not include personal customer data</li>
+            <li><span class="checkbox"></span> <strong>Transparency:</strong> Disclose when you use AI</li>
+            <li><span class="checkbox"></span> <strong>Review:</strong> Verify all AI responses</li>
+            <li><span class="checkbox"></span> <strong>Bias:</strong> Evaluate and adjust discriminatory content</li>
+            <li><span class="checkbox"></span> <strong>Copyright:</strong> Respect intellectual property</li>
+            <li><span class="checkbox"></span> <strong>Expectations:</strong> Be clear about AI's real capabilities</li>
+        </ul>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 5: Ethics and Best Practices | www.mujertech.org</div>
+</div>
+
+<!-- MODULE 6: Resources -->
+<div class="page">
+    <div class="module-header">
+        <h1>Module 6: Downloadable Resources</h1>
+        <p>Your toolkit to get started TODAY</p>
+        <span class="time-badge">⏱️ 5 minutes</span>
+    </div>
+    
+    <div class="resources-grid">
+        <div class="resource-card">
+            <div class="resource-icon">📝</div>
+            <h3>Prompt Library</h3>
+            <p>30+ ready-to-use templates</p>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">⚖️</div>
+            <h3>Tool Evaluation</h3>
+            <p>Complete comparison table</p>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">🛡️</div>
+            <h3>Ethics Checklist</h3>
+            <p>Responsible use guide</p>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">🔄</div>
+            <h3>Workflow Templates</h3>
+            <p>Diagrams and processes</p>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">🎨</div>
+            <h3>Image Prompts Guide</h3>
+            <p>50+ product examples</p>
+        </div>
+        <div class="resource-card">
+            <div class="resource-icon">📄</div>
+            <h3>This PDF Manual</h3>
+            <p>All workshop content</p>
+        </div>
+    </div>
+    
+    <div class="cta-box">
+        <h2>🚀 Ready for the next step?</h2>
+        <p>Join the complete 16-week MujerTech program and transform your business with over 15 AI tools.</p>
+        <div class="cta-content">
+            <div>
+                <h4>✨ Includes:</h4>
+                <ul>
+                    <li>64 hours of training</li>
+                    <li>Personalized mentoring</li>
+                    <li>MujerTech Community</li>
+                    <li>Official certificate</li>
+                </ul>
+            </div>
+            <div>
+                <h4>📅 Next MujerTech cohort:</h4>
+                <p style="font-size: 14pt; margin-top: 10px;"><strong>March 15, 2025</strong></p>
+                <p style="margin-top: 15px;">Sign up at: www.mujertech.org</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-footer">MujerTech — Module 6: Resources | www.mujertech.org</div>
+</div>
+
+<!-- FINAL PAGE: Your Assignment -->
+<div class="page">
+    <div class="module-header">
+        <h1>🚀 Your Assignment for TODAY</h1>
+        <p>Apply what you learned immediately</p>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">✅</span>
+            After the workshop, you will:
+        </h2>
+        <ol style="padding-left: 25px; line-height: 2.5; font-size: 12pt;">
+            <li>Choose <strong>1 tool</strong> from the recommended ones (start with Canva or Leonardo.ai)</li>
+            <li>Create your <strong>free account</strong></li>
+            <li>Generate at least <strong>3 images of your product</strong> using the prompt you created</li>
+            <li>Share your best result in the <strong>MujerTech WhatsApp group</strong></li>
+        </ol>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">📝</span>
+            My next action with AI will be:
+        </h2>
+        <div style="border: 2px dashed var(--primary); border-radius: 8px; padding: 30px; min-height: 120px; margin-top: 15px;">
+            <!-- Space for writing -->
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2 class="card-title">
+            <span class="card-icon">📞</span>
+            Have questions?
+        </h2>
+        <p style="margin-bottom: 15px;">We're here to help:</p>
+        <ul style="padding-left: 25px; line-height: 2;">
+            <li>🌐 Web: <strong>www.mujertech.org</strong></li>
+            <li>📧 Email: <strong>hola@mujertech.org</strong></li>
+            <li>📱 WhatsApp: MujerTech Community Group</li>
+        </ul>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, rgba(44, 142, 156, 0.1) 0%, rgba(255, 105, 120, 0.1) 100%); border-radius: 12px;">
+        <h2 style="font-size: 20pt; background: linear-gradient(135deg, #2c8e9c 0%, #ff6978 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">Thank you for participating!</h2>
+        <p style="font-size: 12pt; color: var(--dark);">Remember: AI is your ally, not your replacement.<br>You bring the creativity, judgment, and human connection.</p>
+        <p style="margin-top: 20px; font-size: 14pt; font-weight: bold; color: var(--primary);">MujerTech — Women entrepreneurs transforming the future</p>
+    </div>
+    
+    <div class="page-footer">MujerTech — Women Business & AI | www.mujertech.org</div>
+</div>
+
+</body>
+</html>

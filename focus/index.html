@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MujerTech - Taller Introductorio de IA</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Header Simplificado -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="logomujertech1.png" alt="MujerTech Logo">
+                <span>MujerTech</span>
+            </div>
+            <button class="glossary-btn" onclick="openGlossary()">
+                <span class="glossary-icon">📖</span>
+                <span class="glossary-text">Ayuda</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra de Progreso Fija -->
+    <div class="progress-indicator" id="progressIndicator">
+        <div class="progress-info">
+            <span class="progress-text" id="progressText">Bloque 1 de 7</span>
+            <span class="progress-percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span class="current-section" id="currentSection">Bienvenida</span>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="main">
+        
+        <!-- ========================================
+             PANTALLA INICIAL: ¿Necesitas Pre-sesión?
+             ======================================== -->
+        <section class="module active" id="presessionCheck">
+            <div class="centered-content">
+                <div class="welcome-icon">👋</div>
+                <h1>¡Hola!</h1>
+                <p class="welcome-text">Antes de empezar, queremos saber:</p>
+                
+                <div class="question-box">
+                    <h2>¿Es tu primera vez usando un taller en el celular?</h2>
+                </div>
+                
+                <div class="choice-buttons">
+                    <button class="btn-large btn-primary" onclick="startPresession()">
+                        SÍ, AYÚDAME A PRACTICAR
+                    </button>
+                    <button class="btn-large btn-secondary" onclick="skipPresession()">
+                        YA SÉ CÓMO, IR AL TALLER
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             PRE-SESIÓN: Alfabetización Digital
+             ======================================== -->
+        <section class="module" id="presession">
+            <!-- Sub-pantallas de la pre-sesión -->
+            <div class="presession-step active" id="preStep1">
+                <div class="centered-content">
+                    <div class="step-icon">📱</div>
+                    <h1>Vamos a practicar juntas</h1>
+                    <p>Este taller está hecho para tu celular.</p>
+                    <p>Te voy a enseñar cómo usarlo paso a paso.</p>
+                    <p class="encouragement">¡No te preocupes, es muy fácil!</p>
+                    <button class="btn-large btn-primary" onclick="nextPreStep(2)">
+                        EMPEZAR →
+                    </button>
+                </div>
+            </div>
+
+            <div class="presession-step" id="preStep2">
+                <div class="centered-content">
+                    <h2>¿Qué es un BOTÓN?</h2>
+                    <p>Un botón es un cuadro que hace algo cuando lo tocas.</p>
+                    
+                    <div class="practice-area">
+                        <p class="instruction">👇 Toca el botón verde:</p>
+                        <button class="practice-btn" id="practiceBtn1" onclick="completePractice(1)">
+                            TÓCAME
+                        </button>
+                    </div>
+                    
+                    <div class="feedback-area" id="feedback1">
+                        <div class="success-message">
+                            <span class="success-icon">🎉</span>
+                            <p>¡Muy bien! Ya sabes usar botones.</p>
+                        </div>
+                        <button class="btn-large btn-primary" onclick="nextPreStep(3)">
+                            SIGUIENTE →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="presession-step" id="preStep3">
+                <div class="centered-content">
+                    <h2>¿Cómo ESCRIBO en el celular?</h2>
+                    <p>Cuando ves un cuadro con líneas, puedes escribir dentro.</p>
+                    
+                    <div class="practice-area">
+                        <p class="instruction">👇 Toca el cuadro y escribe tu nombre:</p>
+                        <input type="text" 
+                               class="practice-input" 
+                               id="practiceInput1" 
+                               placeholder="Escribe aquí..."
+                               oninput="checkInput(1)">
+                    </div>
+                    
+                    <div class="feedback-area" id="feedback2">
+                        <div class="success-message">
+                            <span class="success-icon">✨</span>
+                            <p>¡Excelente! Ya sabes escribir en el celular.</p>
+                        </div>
+                        <button class="btn-large btn-primary" onclick="nextPreStep(4)">
+                            SIGUIENTE →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="presession-step" id="preStep4">
+                <div class="centered-content">
+                    <h2>¿Cómo COPIO texto?</h2>
+                    <p>A veces necesitas copiar algo para usarlo en otro lugar.</p>
+                    
+                    <div class="copy-instructions">
+                        <div class="copy-step">
+                            <span class="step-number">1</span>
+                            <p>Toca y mantén el dedo sobre el texto</p>
+                        </div>
+                        <div class="copy-step">
+                            <span class="step-number">2</span>
+                            <p>Aparece un menú, toca "Copiar"</p>
+                        </div>
+                        <div class="copy-step">
+                            <span class="step-number">3</span>
+                            <p>Ve donde quieres pegarlo</p>
+                        </div>
+                        <div class="copy-step">
+                            <span class="step-number">4</span>
+                            <p>Toca y mantén, luego "Pegar"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <span class="tip-icon">💡</span>
+                        <p>No te preocupes si no lo dominas ahora. En el taller hay botones que copian por ti.</p>
+                    </div>
+                    
+                    <button class="btn-large btn-primary" onclick="nextPreStep(5)">
+                        ENTENDIDO →
+                    </button>
+                </div>
+            </div>
+
+            <div class="presession-step" id="preStep5">
+                <div class="centered-content">
+                    <h2>¿Cómo NAVEGO este taller?</h2>
+                    
+                    <div class="nav-explanation">
+                        <div class="nav-item-explain">
+                            <div class="nav-icon-box">📖</div>
+                            <p>El botón <strong>Ayuda</strong> te explica palabras difíciles</p>
+                        </div>
+                        <div class="nav-item-explain">
+                            <div class="nav-icon-box">→</div>
+                            <p>Los botones <strong>Siguiente</strong> te llevan adelante</p>
+                        </div>
+                        <div class="nav-item-explain">
+                            <div class="nav-icon-box">←</div>
+                            <p>Los botones <strong>Anterior</strong> te llevan atrás</p>
+                        </div>
+                        <div class="nav-item-explain">
+                            <div class="nav-icon-box progress-bar-mini"></div>
+                            <p>La <strong>barra arriba</strong> muestra tu progreso</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-large btn-primary" onclick="nextPreStep(6)">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+
+            <div class="presession-step" id="preStep6">
+                <div class="centered-content">
+                    <div class="celebration-icon">🎉</div>
+                    <h1>¡Ya estás lista!</h1>
+                    <p>Ahora sabes todo lo necesario para usar este taller.</p>
+                    
+                    <div class="learned-list">
+                        <p>Aprendiste a:</p>
+                        <ul>
+                            <li>✅ Usar botones</li>
+                            <li>✅ Escribir en campos de texto</li>
+                            <li>✅ Navegar el taller</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn-large btn-primary" onclick="completePresession()">
+                        EMPEZAR EL TALLER →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 1: BIENVENIDA Y CONTEXTO
+             ======================================== -->
+        <section class="module" id="welcome">
+            <div class="module-content">
+                <div class="hero-section">
+                    <img src="bannerlogo1.png" alt="MujerTech" class="hero-logo">
+                    <h1>¡Bienvenida al Taller de IA!</h1>
+                    <p class="hero-subtitle">Aprende a usar Inteligencia Artificial para tu negocio</p>
+                    <div class="time-badge">⏱️ Duración: 2 horas</div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">🌍</span>
+                        ¿En qué momento estamos?
+                    </h2>
+                    <p>Estamos viviendo un cambio muy grande en el mundo.</p>
+                    <p>Ahora existen programas de computadora que pueden:</p>
+                    <ul class="simple-list">
+                        <li>✍️ Escribir textos</li>
+                        <li>🎨 Crear imágenes</li>
+                        <li>💡 Darte ideas para tu negocio</li>
+                    </ul>
+                    <p>Estos programas se llaman <strong>Inteligencia Artificial</strong> o <strong>IA</strong>.</p>
+                </div>
+
+                <div class="card highlight-card">
+                    <h2>
+                        <span class="card-icon">💪</span>
+                        ¿Por qué esto importa para TU negocio?
+                    </h2>
+                    <p>Con la IA puedes:</p>
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⏰</span>
+                            <div>
+                                <strong>Ahorrar tiempo</strong>
+                                <p>Lo que antes tomaba horas, ahora toma minutos</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💰</span>
+                            <div>
+                                <strong>Hacer más con menos</strong>
+                                <p>Crea contenido tú misma cuando lo necesites</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">📱</span>
+                            <div>
+                                <strong>Vender más</strong>
+                                <p>Crea contenido atractivo para tus redes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">🎯</span>
+                        Hoy vas a aprender
+                    </h2>
+                    <div class="learning-objectives">
+                        <div class="objective-item">
+                            <span class="objective-number">1</span>
+                            <p>Qué es la IA (explicado fácil)</p>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">2</span>
+                            <p>Cómo hablarle a la IA para que te ayude</p>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">3</span>
+                            <p>Cómo crear imágenes bonitas para tu negocio</p>
+                        </div>
+                        <div class="objective-item">
+                            <span class="objective-number">4</span>
+                            <p>Cómo usar la IA de forma segura</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3>Antes de empezar, cuéntanos:</h3>
+                    <p>¿Cuánto sabes de IA?</p>
+                    <div class="experience-options">
+                        <button class="experience-btn" onclick="selectExperience(this, 'nunca')">
+                            <span class="exp-icon">🆕</span>
+                            <span>Nunca la he usado</span>
+                        </button>
+                        <button class="experience-btn" onclick="selectExperience(this, 'poco')">
+                            <span class="exp-icon">🤔</span>
+                            <span>Sé qué es pero no la uso</span>
+                        </button>
+                        <button class="experience-btn" onclick="selectExperience(this, 'algo')">
+                            <span class="exp-icon">👍</span>
+                            <span>La uso a veces</span>
+                        </button>
+                        <button class="experience-btn" onclick="selectExperience(this, 'mucho')">
+                            <span class="exp-icon">⭐</span>
+                            <span>La uso seguido</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <div></div>
+                    <button class="btn-nav btn-next" onclick="showModule('module1')">
+                        EMPEZAR EL TALLER →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 2: ¿QUÉ ES LA IA?
+             ======================================== -->
+        <section class="module" id="module1">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>¿Qué es la Inteligencia Artificial?</h1>
+                    <p class="module-subtitle">Explicado de forma simple</p>
+                    <div class="time-badge">⏱️ 15 minutos</div>
+                </div>
+
+                <div class="card explanation-card">
+                    <div class="big-icon">🤖</div>
+                    <h2>La IA es como una asistente muy inteligente</h2>
+                    <p>Imagina que tienes una asistente que:</p>
+                    <ul class="simple-list">
+                        <li>📚 Leyó millones de libros</li>
+                        <li>🖼️ Vio millones de imágenes</li>
+                        <li>💬 Aprendió a escribir muy bien</li>
+                    </ul>
+                    <p>Esa es la IA. <strong>Le puedes pedir ayuda y te responde.</strong></p>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">✅</span>
+                        Lo que SÍ puede hacer la IA
+                    </h2>
+                    <div class="can-do-list">
+                        <div class="can-do-item">
+                            <span class="can-icon">💬</span>
+                            <p>Escribir textos para tus redes sociales</p>
+                        </div>
+                        <div class="can-do-item">
+                            <span class="can-icon">💡</span>
+                            <p>Darte ideas para tu negocio</p>
+                        </div>
+                        <div class="can-do-item">
+                            <span class="can-icon">🎨</span>
+                            <p>Crear imágenes bonitas</p>
+                        </div>
+                        <div class="can-do-item">
+                            <span class="can-icon">📝</span>
+                            <p>Ayudarte a escribir mensajes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card warning-card">
+                    <h2>
+                        <span class="card-icon">⚠️</span>
+                        Lo que NO puede hacer la IA
+                    </h2>
+                    <div class="cannot-do-list">
+                        <div class="cannot-item">
+                            <span class="cannot-icon">🧠</span>
+                            <p><strong>No piensa de verdad.</strong> Solo imita lo que aprendió.</p>
+                        </div>
+                        <div class="cannot-item">
+                            <span class="cannot-icon">❌</span>
+                            <p><strong>No siempre tiene razón.</strong> Puede equivocarse.</p>
+                        </div>
+                        <div class="cannot-item">
+                            <span class="cannot-icon">👀</span>
+                            <p><strong>No reemplaza tu criterio.</strong> Tú decides qué usar.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-card">
+                    <h2>
+                        <span class="card-icon">🎯</span>
+                        Actividad: ¿Verdad o Mentira?
+                    </h2>
+                    <p>Vamos a ver si entendiste. Responde cada pregunta:</p>
+                    
+                    <div class="quiz-simple" id="mythQuiz">
+                        <div class="quiz-question-item" id="mythQ1">
+                            <p class="quiz-statement">"La IA puede pensar por sí misma"</p>
+                            <div class="quiz-buttons">
+                                <button class="quiz-btn" onclick="checkMyth(1, 'verdad')">
+                                    🟢 VERDAD
+                                </button>
+                                <button class="quiz-btn" onclick="checkMyth(1, 'mentira')">
+                                    🔴 MENTIRA
+                                </button>
+                            </div>
+                            <div class="quiz-feedback" id="mythFeedback1"></div>
+                        </div>
+
+                        <div class="quiz-question-item" id="mythQ2">
+                            <p class="quiz-statement">"La IA puede ayudarme a escribir textos"</p>
+                            <div class="quiz-buttons">
+                                <button class="quiz-btn" onclick="checkMyth(2, 'verdad')">
+                                    🟢 VERDAD
+                                </button>
+                                <button class="quiz-btn" onclick="checkMyth(2, 'mentira')">
+                                    🔴 MENTIRA
+                                </button>
+                            </div>
+                            <div class="quiz-feedback" id="mythFeedback2"></div>
+                        </div>
+
+                        <div class="quiz-question-item" id="mythQ3">
+                            <p class="quiz-statement">"Todo lo que dice la IA es 100% correcto"</p>
+                            <div class="quiz-buttons">
+                                <button class="quiz-btn" onclick="checkMyth(3, 'verdad')">
+                                    🟢 VERDAD
+                                </button>
+                                <button class="quiz-btn" onclick="checkMyth(3, 'mentira')">
+                                    🔴 MENTIRA
+                                </button>
+                            </div>
+                            <div class="quiz-feedback" id="mythFeedback3"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('welcome')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('module2')">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 3: CÓMO HABLARLE A LA IA (PROMPTING)
+             ======================================== -->
+        <section class="module" id="module2">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>Cómo hablarle a la IA</h1>
+                    <p class="module-subtitle">Aprende a pedir lo que necesitas</p>
+                    <div class="time-badge">⏱️ 25 minutos</div>
+                </div>
+
+                <div class="card explanation-card">
+                    <div class="big-icon">💬</div>
+                    <h2>¿Qué es un "prompt"?</h2>
+                    <p>Un <strong>prompt</strong> es el mensaje que le escribes a la IA.</p>
+                    <p>Es como cuando le pides algo a alguien por WhatsApp.</p>
+                    <div class="example-box">
+                        <p class="example-label">Ejemplo de prompt:</p>
+                        <p class="example-text">"Dame 3 ideas para publicar en Instagram sobre mi negocio de jabones"</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">🔑</span>
+                        La regla de oro
+                    </h2>
+                    <div class="golden-rule">
+                        <p class="rule-text">Entre más claro le pidas las cosas a la IA, mejor te va a ayudar.</p>
+                    </div>
+                    <div class="comparison-box">
+                        <div class="comparison-item bad">
+                            <span class="comparison-icon">❌</span>
+                            <p><strong>Malo:</strong> "Dame ideas"</p>
+                        </div>
+                        <div class="comparison-item good">
+                            <span class="comparison-icon">✅</span>
+                            <p><strong>Bueno:</strong> "Dame 3 ideas de posts para Instagram sobre jabones naturales, con un tono amigable"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card method-card">
+                    <h2>
+                        <span class="card-icon">📝</span>
+                        El método de los 4 pasos
+                    </h2>
+                    <p>Para escribir un buen mensaje a la IA, sigue estos pasos:</p>
+                    
+                    <div class="method-steps">
+                        <div class="method-step">
+                            <div class="step-header">
+                                <span class="step-number">1</span>
+                                <span class="step-title">¿Quién eres?</span>
+                            </div>
+                            <p>Cuéntale sobre ti y tu negocio</p>
+                            <div class="step-example">"Tengo un negocio de jabones naturales"</div>
+                        </div>
+                        
+                        <div class="method-step">
+                            <div class="step-header">
+                                <span class="step-number">2</span>
+                                <span class="step-title">¿Qué necesitas?</span>
+                            </div>
+                            <p>Dile exactamente qué quieres</p>
+                            <div class="step-example">"Necesito 3 textos para WhatsApp"</div>
+                        </div>
+                        
+                        <div class="method-step">
+                            <div class="step-header">
+                                <span class="step-number">3</span>
+                                <span class="step-title">¿Cómo lo quieres?</span>
+                            </div>
+                            <p>Describe cómo debe verse el resultado</p>
+                            <div class="step-example">"Cortos, con emojis"</div>
+                        </div>
+                        
+                        <div class="method-step">
+                            <div class="step-header">
+                                <span class="step-number">4</span>
+                                <span class="step-title">¿Qué tono?</span>
+                            </div>
+                            <p>¿Formal, amigable, divertido?</p>
+                            <div class="step-example">"Tono amigable y cercano"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASO COMPLETO: MARÍA -->
+                <div class="case-study">
+                    <div class="case-header">
+                        <span class="case-icon">👩</span>
+                        <div>
+                            <h2>Ejemplo Completo: María y sus Jabones</h2>
+                            <p>Veamos cómo María usa la IA para su negocio</p>
+                        </div>
+                    </div>
+
+                    <div class="case-step">
+                        <h3>
+                            <span class="case-step-number">1</span>
+                            Conoce a María
+                        </h3>
+                        <div class="maria-intro">
+                            <p>María vende <strong>jabones artesanales</strong> en Bogotá.</p>
+                            <p>Su negocio se llama <strong>"Jabones de la Abuela"</strong>.</p>
+                            <p>Vende por WhatsApp y en ferias locales.</p>
+                            <p class="maria-problem">😰 <strong>Su problema:</strong> No sabe qué publicar en su estado de WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <div class="case-step">
+                        <h3>
+                            <span class="case-step-number">2</span>
+                            María piensa qué necesita
+                        </h3>
+                        <div class="maria-thinking">
+                            <div class="thinking-item">
+                                <span class="check">✅</span>
+                                <p><strong>¿Qué vende?</strong> → Jabones naturales</p>
+                            </div>
+                            <div class="thinking-item">
+                                <span class="check">✅</span>
+                                <p><strong>¿Qué necesita?</strong> → Textos para WhatsApp</p>
+                            </div>
+                            <div class="thinking-item">
+                                <span class="check">✅</span>
+                                <p><strong>¿Cómo lo quiere?</strong> → Cortos con emojis</p>
+                            </div>
+                            <div class="thinking-item">
+                                <span class="check">✅</span>
+                                <p><strong>¿Qué tono?</strong> → Amigable</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-step">
+                        <h3>
+                            <span class="case-step-number">3</span>
+                            María escribe su mensaje a la IA
+                        </h3>
+                        <div class="prompt-display">
+                            <p class="prompt-label">El mensaje completo:</p>
+                            <div class="prompt-box" id="mariaPrompt">
+Soy María, tengo un negocio de jabones artesanales naturales en Bogotá.
+
+Necesito 3 textos cortos para publicar en mi estado de WhatsApp.
+
+Que sean cortos, con emojis, y que inviten a preguntar por WhatsApp.
+
+Usa un tono amigable y cercano, como si le hablara a una amiga.
+                            </div>
+                            <button class="btn-copy" onclick="copyText('mariaPrompt')">
+                                📋 COPIAR ESTE MENSAJE
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="case-step">
+                        <h3>
+                            <span class="case-step-number">4</span>
+                            La IA le responde
+                        </h3>
+                        <div class="ai-response">
+                            <p class="response-label">🤖 La IA le dio estas opciones:</p>
+                            <div class="response-options">
+                                <div class="response-option">
+                                    <p>🧼✨ <strong>Opción 1:</strong></p>
+                                    <p>"¿Ya probaste nuestros jabones de avena? Tu piel te lo va a agradecer 🥰 ¡Escríbeme!"</p>
+                                </div>
+                                <div class="response-option">
+                                    <p>🌿🧴 <strong>Opción 2:</strong></p>
+                                    <p>"Ingredientes naturales + mucho amor = jabones que cuidan tu piel 💚 ¿Te cuento más?"</p>
+                                </div>
+                                <div class="response-option">
+                                    <p>🎁 <strong>Opción 3:</strong></p>
+                                    <p>"Regalito perfecto para alguien especial: jabón artesanal hecho con cariño 💝 ¡Pregúntame!"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-result">
+                        <div class="result-icon">🎉</div>
+                        <h3>¡María ya tiene contenido para publicar!</h3>
+                        <div class="result-stats">
+                            <div class="stat">
+                                <span class="stat-value">⏱️ 5 min</span>
+                                <span class="stat-label">Tiempo total</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">🙋‍♀️ Sola</span>
+                                <span class="stat-label">Lo hizo ella misma</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">📝 3</span>
+                                <span class="stat-label">Opciones</span>
+                            </div>
+                        </div>
+                        <p class="result-note">Antes, María no sabía qué escribir. ¡Ahora tiene varias opciones para elegir y puede publicar cuando quiera!</p>
+                    </div>
+                </div>
+
+                <!-- AHORA TU TURNO -->
+                <div class="your-turn-card">
+                    <h2>
+                        <span class="card-icon">🎯</span>
+                        ¡Ahora es tu turno!
+                    </h2>
+                    <p>Vamos a crear tu primer mensaje para la IA:</p>
+                    
+                    <div class="simple-prompt-builder">
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">1</span>
+                                ¿Qué vendes o haces?
+                            </label>
+                            <input type="text" 
+                                   class="builder-input" 
+                                   id="userBusiness" 
+                                   placeholder="Ejemplo: galletas caseras, ropa, servicios de limpieza...">
+                        </div>
+                        
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">2</span>
+                                ¿Qué necesitas? (elige una)
+                            </label>
+                            <div class="builder-options">
+                                <button class="builder-option" onclick="selectNeed(this, 'social')">
+                                    📱 Ideas para redes sociales
+                                </button>
+                                <button class="builder-option" onclick="selectNeed(this, 'mensaje')">
+                                    📧 Un mensaje para clientes
+                                </button>
+                                <button class="builder-option" onclick="selectNeed(this, 'nombre')">
+                                    🏷️ Nombres para un producto
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">3</span>
+                                ¿Qué tono quieres? (elige uno)
+                            </label>
+                            <div class="builder-options">
+                                <button class="builder-option" onclick="selectTone(this, 'amigable')">
+                                    😊 Amigable
+                                </button>
+                                <button class="builder-option" onclick="selectTone(this, 'profesional')">
+                                    👔 Profesional
+                                </button>
+                                <button class="builder-option" onclick="selectTone(this, 'divertido')">
+                                    🎉 Divertido
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-generate" onclick="generateUserPrompt()">
+                            ✨ CREAR MI MENSAJE
+                        </button>
+                        
+                        <div class="generated-prompt" id="generatedPrompt">
+                            <p class="generated-label">Tu mensaje para la IA:</p>
+                            <div class="generated-text" id="generatedText"></div>
+                            <button class="btn-copy" onclick="copyGeneratedPrompt()">
+                                📋 COPIAR MI MENSAJE
+                            </button>
+                            <div class="next-step-hint">
+                                <p>💡 <strong>Siguiente paso:</strong> Copia este mensaje y pégalo en ChatGPT o Claude para ver qué te responde la IA.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('module1')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('module3')">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 4: HERRAMIENTAS QUE PUEDES USAR
+             ======================================== -->
+        <section class="module" id="module3">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>Herramientas que puedes usar HOY</h1>
+                    <p class="module-subtitle">Conoce las apps de IA más fáciles</p>
+                    <div class="time-badge">⏱️ 10 minutos</div>
+                </div>
+
+                <div class="card tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">💬</span>
+                        <div>
+                            <h2>ChatGPT</h2>
+                            <span class="tool-price">GRATIS</span>
+                        </div>
+                    </div>
+                    <p><strong>¿Qué es?</strong> Una IA que conversa contigo y te ayuda a escribir.</p>
+                    <p><strong>¿Para qué sirve?</strong></p>
+                    <ul class="tool-uses">
+                        <li>✍️ Escribir textos para redes sociales</li>
+                        <li>💡 Darte ideas para tu negocio</li>
+                        <li>📧 Redactar mensajes y correos</li>
+                        <li>❓ Responder preguntas</li>
+                    </ul>
+                    <p><strong>¿Cómo usarlo?</strong></p>
+                    <ol class="tool-steps">
+                        <li>Entra a <strong>chat.openai.com</strong> en tu celular</li>
+                        <li>Crea una cuenta gratis (con tu correo)</li>
+                        <li>Escribe tu mensaje y envíalo</li>
+                    </ol>
+                </div>
+
+                <div class="card tool-card">
+                    <div class="tool-header">
+                        <span class="tool-icon">🎨</span>
+                        <div>
+                            <h2>Canva</h2>
+                            <span class="tool-price">GRATIS (con opciones de pago)</span>
+                        </div>
+                    </div>
+                    <p><strong>¿Qué es?</strong> Una app para crear diseños e imágenes bonitas.</p>
+                    <p><strong>¿Para qué sirve?</strong></p>
+                    <ul class="tool-uses">
+                        <li>🖼️ Crear imágenes para redes sociales</li>
+                        <li>📋 Hacer menús y catálogos</li>
+                        <li>🎨 Diseñar logos simples</li>
+                        <li>✨ Generar imágenes con IA</li>
+                    </ul>
+                    <p><strong>¿Cómo usarlo?</strong></p>
+                    <ol class="tool-steps">
+                        <li>Descarga la app <strong>Canva</strong> de tu tienda de apps</li>
+                        <li>Crea una cuenta gratis</li>
+                        <li>Elige una plantilla y personalízala</li>
+                    </ol>
+                </div>
+
+                <div class="tip-card">
+                    <span class="tip-icon">💡</span>
+                    <div>
+                        <h3>Tip importante</h3>
+                        <p>Empieza con <strong>ChatGPT</strong> para textos y <strong>Canva</strong> para imágenes. Son gratis y fáciles de usar. ¡No necesitas más por ahora!</p>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('module2')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('module4')">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 5: CREA UNA IMAGEN PARA TU NEGOCIO
+             ======================================== -->
+        <section class="module" id="module4">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>Crea una imagen para tu negocio</h1>
+                    <p class="module-subtitle">Imágenes profesionales sin fotógrafo</p>
+                    <div class="time-badge">⏱️ 20 minutos</div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">🖼️</span>
+                        ¿Por qué importan las imágenes?
+                    </h2>
+                    <p>Las imágenes bonitas hacen que más personas quieran comprar.</p>
+                    <p>Con la IA puedes crear imágenes rápidas para:</p>
+                    <ul class="simple-list">
+                        <li>📱 Publicar en redes cuando necesites contenido urgente</li>
+                        <li>💡 Visualizar ideas antes de invertir en una sesión profesional</li>
+                        <li>🎨 Experimentar con estilos sin límites</li>
+                    </ul>
+                    <div class="tip-box" style="margin-top: var(--spacing-md);">
+                        <span class="tip-icon">💡</span>
+                        <p><strong>Tip:</strong> La IA es una herramienta más en tu caja de herramientas. Para fotos de productos reales, una sesión profesional sigue siendo valiosa.</p>
+                    </div>
+                </div>
+
+                <div class="card method-card">
+                    <h2>
+                        <span class="card-icon">📝</span>
+                        Cómo describir tu imagen
+                    </h2>
+                    <p>Para que la IA cree una buena imagen, debes decirle:</p>
+                    
+                    <div class="image-method">
+                        <div class="image-step">
+                            <span class="step-number">1</span>
+                            <div>
+                                <strong>¿Qué producto?</strong>
+                                <p class="step-example">"Jabón de lavanda"</p>
+                            </div>
+                        </div>
+                        <div class="image-step">
+                            <span class="step-number">2</span>
+                            <div>
+                                <strong>¿Dónde está?</strong>
+                                <p class="step-example">"Sobre una mesa de madera"</p>
+                            </div>
+                        </div>
+                        <div class="image-step">
+                            <span class="step-number">3</span>
+                            <div>
+                                <strong>¿Qué más hay?</strong>
+                                <p class="step-example">"Con flores de lavanda alrededor"</p>
+                            </div>
+                        </div>
+                        <div class="image-step">
+                            <span class="step-number">4</span>
+                            <div>
+                                <strong>¿Qué colores?</strong>
+                                <p class="step-example">"Colores morados y blancos"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EJEMPLO DE IMAGEN DE MARÍA -->
+                <div class="case-study">
+                    <div class="case-header">
+                        <span class="case-icon">👩</span>
+                        <div>
+                            <h2>María también crea una imagen</h2>
+                            <p>Veamos cómo describe su producto</p>
+                        </div>
+                    </div>
+
+                    <div class="case-step">
+                        <h3>María describió su imagen así:</h3>
+                        <div class="prompt-display">
+                            <div class="prompt-box" id="mariaImagePrompt">
+Foto de jabones artesanales coloridos sobre una mesa de madera, con flores secas alrededor, luz natural suave, colores pastel, foto profesional
+                            </div>
+                            <button class="btn-copy" onclick="copyText('mariaImagePrompt')">
+                                📋 COPIAR
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="case-result">
+                        <p>Con esa descripción, la IA puede crear imágenes como esta:</p>
+                        <div class="image-result">
+                            <img src="jabones-maria.png" alt="Jabones artesanales generados con IA - Ejemplo de María" class="generated-image">
+                        </div>
+                        <div class="tip-box" style="margin-top: var(--spacing-md);">
+                            <span class="tip-icon">💡</span>
+                            <p>María puede usar esta imagen para sus redes mientras planea una sesión de fotos profesional de sus productos reales.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TU TURNO: IMAGEN -->
+                <div class="your-turn-card">
+                    <h2>
+                        <span class="card-icon">🎯</span>
+                        Crea la descripción de TU imagen
+                    </h2>
+                    
+                    <div class="image-builder">
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">1</span>
+                                ¿Qué producto quieres mostrar?
+                            </label>
+                            <input type="text" 
+                                   class="builder-input" 
+                                   id="imageProduct" 
+                                   placeholder="Ejemplo: galletas, aretes, crema facial...">
+                        </div>
+                        
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">2</span>
+                                ¿Dónde está el producto? (elige una)
+                            </label>
+                            <div class="builder-options">
+                                <button class="builder-option" onclick="selectBackground(this, 'mesa')">
+                                    🪵 Mesa de madera
+                                </button>
+                                <button class="builder-option" onclick="selectBackground(this, 'blanco')">
+                                    ⬜ Fondo blanco
+                                </button>
+                                <button class="builder-option" onclick="selectBackground(this, 'naturaleza')">
+                                    🌿 Con plantas
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="builder-step">
+                            <label class="builder-label">
+                                <span class="builder-number">3</span>
+                                ¿Qué colores te gustan? (elige uno)
+                            </label>
+                            <div class="builder-options">
+                                <button class="builder-option" onclick="selectColors(this, 'pastel')">
+                                    🎀 Suaves y pastel
+                                </button>
+                                <button class="builder-option" onclick="selectColors(this, 'brillantes')">
+                                    🌈 Brillantes y alegres
+                                </button>
+                                <button class="builder-option" onclick="selectColors(this, 'naturales')">
+                                    🍂 Naturales y tierra
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-generate" onclick="generateImagePrompt()">
+                            🎨 CREAR DESCRIPCIÓN
+                        </button>
+                        
+                        <div class="generated-prompt" id="generatedImagePrompt">
+                            <p class="generated-label">Tu descripción para crear la imagen:</p>
+                            <div class="generated-text" id="generatedImageText"></div>
+                            <button class="btn-copy" onclick="copyImagePrompt()">
+                                📋 COPIAR
+                            </button>
+                            <div class="next-step-hint">
+                                <p>💡 <strong>Siguiente paso:</strong> Abre Canva, busca "Magic Media" o "Texto a imagen", y pega esta descripción.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('module3')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('module5')">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 6: CUIDADOS IMPORTANTES (ÉTICA)
+             ======================================== -->
+        <section class="module" id="module5">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>Cuidados importantes</h1>
+                    <p class="module-subtitle">Usa la IA de forma segura</p>
+                    <div class="time-badge">⏱️ 10 minutos</div>
+                </div>
+
+                <div class="card warning-card">
+                    <h2>
+                        <span class="card-icon">🔒</span>
+                        Regla #1: Protege tu información
+                    </h2>
+                    <p><strong>NUNCA</strong> le des a la IA información privada de tus clientes:</p>
+                    <ul class="dont-list">
+                        <li>❌ Nombres completos de clientes</li>
+                        <li>❌ Números de teléfono</li>
+                        <li>❌ Direcciones</li>
+                        <li>❌ Números de tarjetas</li>
+                    </ul>
+                    <div class="example-comparison">
+                        <div class="bad-example">
+                            <span class="example-icon">❌</span>
+                            <p><strong>MAL:</strong> "Escribe un mensaje para María López, teléfono 311-123-4567"</p>
+                        </div>
+                        <div class="good-example">
+                            <span class="example-icon">✅</span>
+                            <p><strong>BIEN:</strong> "Escribe un mensaje de agradecimiento para una clienta que compró jabones"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">👀</span>
+                        Regla #2: Siempre revisa
+                    </h2>
+                    <p>La IA puede cometer errores. <strong>Siempre lee lo que te da antes de usarlo.</strong></p>
+                    <div class="check-list">
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <p>Lee el texto completo antes de publicar</p>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <p>Verifica que los datos sean correctos</p>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">✅</span>
+                            <p>Cambia lo que no te guste</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>
+                        <span class="card-icon">💬</span>
+                        Regla #3: Sé honesta
+                    </h2>
+                    <p>Si usas IA para crear contenido, está bien. Pero no engañes a tus clientes.</p>
+                    <div class="honesty-examples">
+                        <div class="honesty-item">
+                            <span class="honesty-icon">✅</span>
+                            <p>Puedes usar textos creados con IA</p>
+                        </div>
+                        <div class="honesty-item">
+                            <span class="honesty-icon">✅</span>
+                            <p>Puedes usar imágenes generadas con IA</p>
+                        </div>
+                        <div class="honesty-item warning">
+                            <span class="honesty-icon">⚠️</span>
+                            <p>No digas que una foto IA es una foto real de tu producto</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <h2>Las 3 reglas de oro</h2>
+                    <div class="rules-summary">
+                        <div class="rule-item">
+                            <span class="rule-number">1</span>
+                            <p>🔒 Protege la información privada</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-number">2</span>
+                            <p>👀 Siempre revisa antes de publicar</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-number">3</span>
+                            <p>💬 Sé honesta con tus clientes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('module4')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('module6')">
+                        SIGUIENTE →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================
+             BLOQUE 7: RECURSOS Y CERTIFICADO
+             ======================================== -->
+        <section class="module" id="module6">
+            <div class="module-content">
+                <div class="module-header">
+                    <h1>¡Felicitaciones!</h1>
+                    <p class="module-subtitle">Completaste el taller</p>
+                </div>
+
+                <div class="celebration-section">
+                    <div class="celebration-icon">🎉</div>
+                    <h2>¡Lo lograste!</h2>
+                    <p>Has completado el Taller Introductorio de IA de MujerTech</p>
+                </div>
+
+                <div class="card summary-card">
+                    <h2>
+                        <span class="card-icon">📚</span>
+                        Hoy aprendiste
+                    </h2>
+                    <div class="learned-items">
+                        <div class="learned-item">
+                            <span class="learned-check">✅</span>
+                            <p>Qué es la Inteligencia Artificial</p>
+                        </div>
+                        <div class="learned-item">
+                            <span class="learned-check">✅</span>
+                            <p>Cómo hablarle a la IA para que te ayude</p>
+                        </div>
+                        <div class="learned-item">
+                            <span class="learned-check">✅</span>
+                            <p>Qué herramientas puedes usar (ChatGPT y Canva)</p>
+                        </div>
+                        <div class="learned-item">
+                            <span class="learned-check">✅</span>
+                            <p>Cómo crear imágenes para tu negocio</p>
+                        </div>
+                        <div class="learned-item">
+                            <span class="learned-check">✅</span>
+                            <p>Cómo usar la IA de forma segura</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card task-card">
+                    <h2>
+                        <span class="card-icon">🎯</span>
+                        Tu tarea para mañana
+                    </h2>
+                    <div class="task-list">
+                        <div class="task-item">
+                            <span class="task-number">1</span>
+                            <p>Abre ChatGPT y pide una idea para tu negocio</p>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-number">2</span>
+                            <p>Abre Canva y crea una imagen simple</p>
+                        </div>
+                        <div class="task-item">
+                            <span class="task-number">3</span>
+                            <p>Comparte tu experiencia en el grupo de WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certificate-section">
+                    <h2>
+                        <span class="card-icon">📜</span>
+                        Obtén tu certificado
+                    </h2>
+                    <p>Escribe tu nombre para generar tu certificado:</p>
+                    <input type="text" 
+                           class="certificate-input" 
+                           id="certificateName" 
+                           placeholder="Tu nombre completo">
+                    <button class="btn-certificate" onclick="downloadCertificate()">
+                        📥 DESCARGAR MI CERTIFICADO
+                    </button>
+                </div>
+
+                <div class="card cta-card">
+                    <h2>
+                        <span class="card-icon">🚀</span>
+                        ¿Quieres aprender más?
+                    </h2>
+                    <p>Únete al programa completo <strong>MujerTech</strong> de 16 semanas:</p>
+                    <ul class="program-features">
+                        <li>✨ 64 horas de formación</li>
+                        <li>👩‍🏫 Mentoría personalizada</li>
+                        <li>👭 Comunidad de emprendedoras</li>
+                        <li>📜 Certificado oficial</li>
+                    </ul>
+                    <p class="next-cohort">📅 Próximo grupo: <strong>15 de marzo 2025</strong></p>
+                    <button class="btn-cta">
+                        QUIERO SABER MÁS
+                    </button>
+                </div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" onclick="showModule('module5')">
+                        ← ANTERIOR
+                    </button>
+                    <button class="btn-nav btn-next" onclick="showModule('welcome')">
+                        VOLVER AL INICIO
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================
+         GLOSARIO (Bottom Sheet)
+         ======================================== -->
+    <div class="glossary-overlay" id="glossaryOverlay" onclick="closeGlossary()"></div>
+    <div class="glossary-panel" id="glossaryPanel">
+        <div class="glossary-header">
+            <h2>📖 Palabras que usamos</h2>
+            <button class="glossary-close" onclick="closeGlossary()">✕</button>
+        </div>
+        <div class="glossary-search">
+            <input type="text" 
+                   placeholder="Buscar palabra..." 
+                   oninput="filterGlossary(this.value)"
+                   id="glossarySearch">
+        </div>
+        <div class="glossary-content" id="glossaryContent">
+            <!-- Contenido generado por JavaScript -->
+        </div>
+    </div>
+
+    <!-- Timer (opcional) -->
+    <div class="timer-container" id="timerContainer">
+        <span class="timer-icon">⏱️</span>
+        <span class="timer" id="timer">00:00</span>
+    </div>
+
+    <!-- Notificaciones -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
