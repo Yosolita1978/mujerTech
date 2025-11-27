@@ -1094,65 +1094,64 @@ function exportToPDF() {
     const pdfContainer = document.createElement('div');
     pdfContainer.id = 'pdf-temp-container';
     pdfContainer.style.cssText = `
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
-        width: 210mm;
-        padding: 15mm;
+        width: 800px;
+        padding: 40px;
         background: white;
-        z-index: -9999;
+        z-index: 99999;
         box-sizing: border-box;
+        overflow: visible;
     `;
     
-    // Clone modules (skip welcome/evaluation, keep modules 1-6)
+    // Clone modules
     const modulesToExport = ['welcome', 'module1', 'module2', 'module3', 'module4', 'module5', 'module6'];
     
     modulesToExport.forEach(id => {
         const original = document.getElementById(id);
         if (original) {
             const clone = original.cloneNode(true);
-            clone.style.cssText = `
-                display: block !important;
-                opacity: 1 !important;
-                visibility: visible !important;
-                margin: 0 0 20px 0;
-                padding: 15px;
-                page-break-inside: avoid;
-            `;
+            clone.style.display = 'block';
+            clone.style.opacity = '1';
+            clone.style.visibility = 'visible';
+            clone.style.marginBottom = '30px';
             // Remove interactive elements
-            clone.querySelectorAll('.button-group, .nav-buttons, .quiz-container, .prompt-builder, .generate-btn, .activity-btn, button').forEach(el => el.remove());
+            clone.querySelectorAll('.button-group, .nav-buttons, .quiz-container, .prompt-builder, .generate-btn, .activity-btn, [onclick]').forEach(el => el.remove());
             pdfContainer.appendChild(clone);
         }
     });
     
     document.body.appendChild(pdfContainer);
     
-    const opt = {
-        margin: 0,
-        filename: 'MujerTech_Taller_IA.pdf',
-        image: { type: 'jpeg', quality: 0.92 },
-        html2canvas: { 
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            scrollX: 0,
-            scrollY: 0,
-            windowWidth: pdfContainer.scrollWidth
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
-    
-    html2pdf().set(opt).from(pdfContainer).save().then(() => {
-        pdfContainer.remove();
-        showNotification('¡PDF descargado exitosamente!', 'success');
-    }).catch(err => {
-        pdfContainer.remove();
-        console.error('Error generating PDF:', err);
-        showNotification('Error al generar el PDF. Intenta de nuevo.', 'error');
-    });
+    // Wait for images to load
+    setTimeout(() => {
+        const opt = {
+            margin: [10, 10, 10, 10],
+            filename: 'MujerTech_Taller_IA.pdf',
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { 
+                scale: 1.5,
+                useCORS: true,
+                logging: true,
+                scrollX: 0,
+                scrollY: 0
+            },
+            jsPDF: { 
+                unit: 'mm', 
+                format: 'a4', 
+                orientation: 'portrait' 
+            },
+            pagebreak: { mode: 'avoid-all' }
+        };
+        
+        html2pdf().set(opt).from(pdfContainer).save().then(() => {
+            pdfContainer.remove();
+            showNotification('¡PDF descargado exitosamente!', 'success');
+        }).catch(err => {
+            pdfContainer.remove();
+            console.error('Error generating PDF:', err);
+            showNotification('Error al generar el PDF. Intenta de nuevo.', 'error');
+        });
+    }, 500);
 }
