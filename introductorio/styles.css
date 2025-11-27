@@ -1013,42 +1013,91 @@ body.pdf-mode .pdf-cover {
     color: var(--gray);
 }
 
-/* Print styles */
+/* ========== PDF EXPORT STYLES ========== */
+body.pdf-mode {
+    background: white !important;
+    overflow: visible !important;
+}
+
+body.pdf-mode .sidebar,
+body.pdf-mode .header,
+body.pdf-mode .timer-container,
+body.pdf-mode .mobile-menu-toggle,
+body.pdf-mode nav,
+body.pdf-mode .nav-buttons,
+body.pdf-mode .button-group,
+body.pdf-mode .quiz-container,
+body.pdf-mode .prompt-builder,
+body.pdf-mode .generate-btn,
+body.pdf-mode .activity-btn,
+body.pdf-mode #evaluation,
+body.pdf-mode .download-btn,
+body.pdf-mode [onclick="exportToPDF()"] {
+    display: none !important;
+}
+
+body.pdf-mode .main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+body.pdf-mode .module {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+
+body.pdf-mode .module:last-child {
+    page-break-after: avoid;
+}
+
+body.pdf-mode .pdf-cover {
+    display: block !important;
+    page-break-after: always;
+}
+
+body.pdf-mode .module-header,
+body.pdf-mode .hero-section,
+body.pdf-mode .card,
+body.pdf-mode .info-box,
+body.pdf-mode .formula-box,
+body.pdf-mode .use-case-grid,
+body.pdf-mode .tools-grid,
+body.pdf-mode .resources-grid {
+    box-shadow: none !important;
+    border: 1px solid #e0e0e0 !important;
+    margin-bottom: 15px !important;
+    page-break-inside: avoid;
+}
+
+body.pdf-mode .resources-grid,
+body.pdf-mode .use-case-grid,
+body.pdf-mode .tools-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 15px !important;
+}
+
+body.pdf-mode * {
+    color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+/* Hide pdf-cover by default */
+.pdf-cover {
+    display: none;
+}
+
 @media print {
-    body {
-        background: white;
-    }
-    
-    .header,
-    .timer-container,
-    .mobile-menu-toggle,
-    .btn-group,
-    .quiz-container,
-    .prompt-builder,
-    #mythsActivity,
-    .activity-box button,
-    #customerQuestions,
-    .nav {
-        display: none !important;
-    }
-    
-    .main {
-        margin-top: 0;
-        padding: 0;
-    }
-    
-    .module {
-        display: block !important;
-        page-break-after: always;
-    }
-    
-    .card {
-        box-shadow: none;
-        border: 1px solid #ddd;
-        page-break-inside: avoid;
-    }
-    
-    .pdf-cover {
-        display: block;
-    }
+    body { background: white !important; }
+    .sidebar, .header, .timer-container, nav { display: none !important; }
+    .main { margin-left: 0 !important; }
+    .module { display: block !important; page-break-after: always; }
 }

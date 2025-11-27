@@ -1103,35 +1103,35 @@ function exportToPDF() {
     // Add PDF mode class
     document.body.classList.add('pdf-mode');
     
-    // PDF options with reduced scale
-    const opt = {
-        margin: [10, 10, 10, 10],
-        filename: 'MujerTech_Taller_IA.pdf',
-        image: { type: 'jpeg', quality: 0.9 },
-        html2canvas: { 
-            scale: 1,
-            useCORS: true,
-            logging: false,
-            windowWidth: 800
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        },
-        pagebreak: { mode: 'css', before: '.module', avoid: '.card' }
-    };
-    
-    // Get the main content area
-    const element = document.querySelector('.main');
-    
-    // Generate PDF
-    html2pdf().set(opt).from(element).save().then(() => {
-        document.body.classList.remove('pdf-mode');
-        showNotification('¡PDF descargado exitosamente!', 'success');
-    }).catch(err => {
-        document.body.classList.remove('pdf-mode');
-        console.error('Error generating PDF:', err);
-        showNotification('Error al generar el PDF. Intenta de nuevo.', 'error');
-    });
+    // Small delay to let styles apply
+    setTimeout(() => {
+        const opt = {
+            margin: [15, 15, 15, 15],
+            filename: 'MujerTech_Taller_IA.pdf',
+            image: { type: 'jpeg', quality: 0.85 },
+            html2canvas: { 
+                scale: 1.5,
+                useCORS: true,
+                logging: false,
+                letterRendering: true,
+                width: 794,
+                windowWidth: 794
+            },
+            jsPDF: { 
+                unit: 'mm', 
+                format: 'a4', 
+                orientation: 'portrait' 
+            },
+            pagebreak: { mode: ['css', 'legacy'], before: '.module' }
+        };
+        
+        html2pdf().set(opt).from(document.querySelector('.main')).save().then(() => {
+            document.body.classList.remove('pdf-mode');
+            showNotification('¡PDF descargado exitosamente!', 'success');
+        }).catch(err => {
+            document.body.classList.remove('pdf-mode');
+            console.error('Error generating PDF:', err);
+            showNotification('Error al generar el PDF. Intenta de nuevo.', 'error');
+        });
+    }, 100);
 }
