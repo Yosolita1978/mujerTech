@@ -2257,6 +2257,29 @@ a, button, input, select, textarea {
 }
 
 /* ============================================
+   PRIVACY NOTICE
+   ============================================ */
+
+.privacy-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(35, 36, 67, 0.95);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 9px;
+    padding: 4px 10px;
+    text-align: center;
+    z-index: 50;
+    line-height: 1.3;
+}
+
+.privacy-notice a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: underline;
+}
+
+/* ============================================
    RESPONSIVE - TABLETS
    ============================================ */
 
