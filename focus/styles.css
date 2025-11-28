@@ -2038,6 +2038,7 @@ a, button, input, select, textarea {
 }
 
 .btn-cta {
+    display: block;
     width: 100%;
     padding: var(--spacing-md);
     background: var(--primary);
@@ -2047,10 +2048,31 @@ a, button, input, select, textarea {
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
 }
 
 .btn-cta:active {
     background: var(--primary-dark);
+}
+
+.feedback-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    background: var(--warning-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+}
+
+.feedback-benefit .benefit-icon {
+    font-size: 1.5rem;
+}
+
+.feedback-benefit p {
+    margin: 0;
+    color: #92400E;
 }
 
 /* ============================================
@@ -2361,4 +2383,126 @@ a:focus-visible {
 .glossary-btn {
     -webkit-user-select: none;
     user-select: none;
+}
+
+/* ============================================
+   CERTIFICATE PDF STYLES
+   ============================================ */
+
+#certificate-container {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+}
+
+.certificate-pdf {
+    width: 297mm;
+    height: 210mm;
+    padding: 20mm 25mm;
+    background: linear-gradient(135deg, #fffcf9 0%, #f0f9fa 100%);
+    border: 6px solid #2c8e9c;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cert-trophy {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.cert-title {
+    color: #2c8e9c;
+    font-size: 36px;
+    margin: 0 0 5px 0;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.cert-brand {
+    color: #232443;
+    font-size: 28px;
+    margin: 0 0 3px 0;
+    font-weight: 700;
+}
+
+.cert-tagline {
+    color: #6B7280;
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+
+.cert-body {
+    border-top: 2px solid #E5E7EB;
+    border-bottom: 2px solid #E5E7EB;
+    padding: 20px 0;
+    margin: 15px 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cert-label {
+    color: #6B7280;
+    font-size: 14px;
+    margin: 0 0 8px 0;
+}
+
+.cert-name {
+    color: #232443;
+    font-size: 32px;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cert-course {
+    color: #ff6978;
+    font-size: 20px;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    background: rgba(44, 142, 156, 0.1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    max-width: 600px;
+}
+
+.cert-skills span {
+    color: #232443;
+    font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cert-date {
+    color: #232443;
+    font-size: 14px;
+    margin: 15px 0 3px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cert-duration {
+    color: #6B7280;
+    font-size: 12px;
+    margin: 0 0 15px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.cert-url {
+    color: #2c8e9c;
+    font-size: 14px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
