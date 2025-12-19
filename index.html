@@ -3,119 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
-    <meta name="description" content="MujerTech - Bootcamp de negocios e IA para mujeres emprendedoras en Latinoamérica. 16 semanas de transformación empresarial.">
-    <meta name="keywords" content="emprendimiento femenino, IA, inteligencia artificial, mujeres, latinoamerica, bootcamp, negocios">
-    <title>MujerTech - Currículo Completo | 16 Semanas de Transformación</title>
+    <meta name="description" content="MujerTech - Bootcamp de IA para mujeres emprendedoras en Latinoamérica. Aprende a usar IA para tu negocio, en español, paso a paso.">
+    <meta name="keywords" content="emprendimiento femenino, IA, inteligencia artificial, mujeres, latinoamerica, bootcamp, negocios, Colombia, México">
+    <title>MujerTech - IA para tu negocio | Bootcamp para Mujeres Emprendedoras</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Optimizations for mobile performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <meta name="theme-color" content="#1f2041">
+    <link rel="icon" type="image/png" href="logos/Icon-Only-Logo.png">
+    <meta name="theme-color" content="#122c34">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <header>
+    <!-- Header -->
+    <header class="site-header">
         <div class="container">
-            <div class="header-content">
-                <div class="logo">MujerTech</div>
-                <p class="header-subtitle">Guía Completa del Programa — Negocios y IA para Mujeres Emprendedoras</p>
-                
-                <div class="program-stats">
-                    <div class="stat">
-                        <span class="stat-number">16</span>
-                        <span class="stat-label">Semanas</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">64</span>
-                        <span class="stat-label">Horas de Clase</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Herramientas IA</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1</span>
-                        <span class="stat-label">Negocio Real</span>
-                    </div>
-                </div>
-                
-                <div class="header-cta">
-                    <a href="#pricing" class="cta-button header-cta-button">¡Quiero ser parte de MujerTech!</a>
-                </div>
-            </div>
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <img src="logos/logo-banner.png" alt="MujerTech" class="logo-img">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#temario">Temario</a></li>
+                    <li><a href="#como-funciona">Cómo funciona</a></li>
+                    <li><a href="#gratis">Gratis</a></li>
+                    <li><a href="#proximamente">Próximamente</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="#registro" class="btn btn-primary btn-nav">Me interesa</a>
+                <button class="mobile-menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
         </div>
     </header>
 
-    <section class="overview">
+    <!-- Hero -->
+    <section class="hero">
         <div class="container">
-            <h2>Descripción del Programa</h2>
-            <div class="overview-content">
-                <p>Academia de <strong>16 semanas</strong> diseñada para ayudar a mujeres emprendedoras en Latinoamérica a <strong>validar, lanzar y hacer crecer</strong> sus negocios utilizando estrategias modernas, herramientas digitales y de inteligencia artificial.</p>
-                
-                <p>Las participantes trabajarán con <strong>ideas reales de negocio</strong>, construyendo paso a paso desde la validación del problema hasta estrategias de escalamiento. Cada semana combina teoría práctica, herramientas digitales y ejercicios hands-on que se pueden aplicar inmediatamente.</p>
+            <h1>IA para tu negocio, en español, paso a paso — y sin jerga técnica.</h1>
+            <p class="hero-subtitle">MujerTech es un bootcamp corto y práctico para mujeres emprendedoras en Latinoamérica. Aprendes a usar IA para vender más, ahorrar tiempo y tomar mejores decisiones con herramientas accesibles y ejemplos reales.</p>
+            <div class="hero-ctas">
+                <a href="#registro" class="btn btn-primary btn-large">Me interesa</a>
+                <a href="#temario" class="btn btn-secondary btn-large">Ver temario</a>
             </div>
         </div>
     </section>
 
-    <section class="curriculum">
+    <!-- Para quién es -->
+    <section class="para-quien">
         <div class="container">
-            <h2>Qué Vas a Aprender - Semana a Semana</h2>
-            <p class="curriculum-subtitle">Haz clic en cada semana para ver el contenido completo</p>
-            
-            <div class="weeks-container" id="weeksContainer">
-                <!-- Week content will be generated by JavaScript -->
+            <h2>Hecho para la vida real (la tuya).</h2>
+            <ul class="check-list">
+                <li>Si tienes (o quieres empezar) un negocio y te abruma la tecnología.</li>
+                <li>Si quieres usar IA sin aprender a programar.</li>
+                <li>Si necesitas estructura: finanzas, marketing y decisiones con datos, pero explicado en sencillo.</li>
+                <li>Si quieres ejemplos cercanos a Latinoamérica y un tono humano, sin juicio.</li>
+            </ul>
+            <p class="section-closing">No es un curso genérico. Es IA aplicada a tu negocio, con contexto y acompañamiento.</p>
+        </div>
+    </section>
+
+    <!-- Qué vas a lograr -->
+    <section class="logros">
+        <div class="container">
+            <h2>Sales con herramientas listas para usar.</h2>
+            <div class="logros-grid">
+                <div class="logro-card">
+                    <span class="logro-icon">💡</span>
+                    <h3>Claridad de negocio</h3>
+                    <p>Organiza tu idea, propuesta de valor y números básicos.</p>
+                </div>
+                <div class="logro-card">
+                    <span class="logro-icon">💬</span>
+                    <h3>Marketing que se siente humano</h3>
+                    <p>Prompts y plantillas para contenido y mensajes que no suenan 'robot'.</p>
+                </div>
+                <div class="logro-card">
+                    <span class="logro-icon">📊</span>
+                    <h3>Decisiones con datos (sin dolor)</h3>
+                    <p>Bases para entender qué se vende más, cuándo y por qué.</p>
+                </div>
+                <div class="logro-card">
+                    <span class="logro-icon">⚡</span>
+                    <h3>Tu primer sistema con IA</h3>
+                    <p>Flujos simples para ahorrar tiempo (y estrés).</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="pricing-plans" id="pricing">
+    <!-- Cómo funciona -->
+    <section class="como-funciona" id="como-funciona">
         <div class="container">
-            <h2>Elige tu Plan de Transformación</h2>
-            <p class="pricing-subtitle">Opciones flexibles diseñadas para tu momento de vida y presupuesto</p>
+            <h2>Micro-lecciones + quizzes + progreso claro.</h2>
+            <p class="section-intro">El programa vive en el campus y está diseñado para avanzar con claridad:</p>
             
-            <div class="currency-toggle">
-                <button class="currency-btn active" onclick="switchCurrency('cop')" id="copBtn">COP</button>
-                <button class="currency-btn" onclick="switchCurrency('usd')" id="usdBtn">USD</button>
-            </div>
-            
-            <div class="pricing-container" id="pricingContainer">
-                <!-- Pricing content will be generated by JavaScript -->
-            </div>
-            
-            <div class="pricing-footer">
-                <p>✅ <strong>Garantía de reembolso</strong> de 7 días sin preguntas</p>
-                <p>💳 <strong>Pagos seguros</strong> vía PSE, tarjetas y billeteras digitales</p>
-                <p>📱 <strong>Soporte vía WhatsApp</strong> durante todo el programa</p>
+            <ul class="feature-list">
+                <li><strong>6 módulos</strong> · 60 lecciones (10 lecciones por módulo).</li>
+                <li>Lecciones con <strong>texto + imágenes + videos</strong> embebidos.</li>
+                <li><strong>Quizzes cortos</strong> (1–3 preguntas) para desbloquear progreso.</li>
+                <li><strong>Certificado</strong> al completar el 100%.</li>
+                <li><strong>Panel de progreso</strong> para que sepas exactamente dónde vas.</li>
+            </ul>
+            <p class="micro-confianza">Pensado para aprender en ratitos, con estructura y sin perderte.</p>
+        </div>
+    </section>
+
+    <!-- Temario -->
+    <section class="temario" id="temario">
+        <div class="container">
+            <h2>Lo que verás en 2 meses</h2>
+            <div class="modulos-grid">
+                <div class="modulo-card">
+                    <span class="modulo-num">1</span>
+                    <p>Tu 'por qué' + metas con enfoque realista.</p>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-num">2</span>
+                    <p>Modelo de negocio (sin humo).</p>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-num">3</span>
+                    <p>Dinero: costos, precios y punto de equilibrio.</p>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-num">4</span>
+                    <p>Herramientas digitales básicas (tu kit de trabajo).</p>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-num">5</span>
+                    <p>Marketing práctico con IA (contenido + mensajes).</p>
+                </div>
+                <div class="modulo-card">
+                    <span class="modulo-num">6</span>
+                    <p>Datos para decidir mejor (ventas, horarios, inventario).</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="week-nav" id="weekNav">
-        <!-- Navigation items will be generated by JavaScript -->
-    </div>
-
-    <section class="cta">
+    <!-- Material gratuito -->
+    <section class="gratis" id="gratis">
         <div class="container">
-            <h2>¿Lista para Transformar tu Idea en Realidad?</h2>
-            <p>Únete a la próxima cohorte de MujerTech y aprende a construir tu negocio con las herramientas más avanzadas de inteligencia artificial.</p>
-            <div class="cta-urgency">
-                <p class="urgency-text">🔥 <strong>Próxima cohorte inicia:</strong> 15 de marzo • <strong>Solo 30 cupos disponibles</strong></p>
-            </div>
-            <a href="#pricing" class="cta-button">¡Reserva tu Cupo Ahora!</a>
+            <h2>Empieza gratis</h2>
+            <p class="section-intro">Prueba nuestro taller básico y descubre cómo se siente aprender IA sin miedo y con ejemplos reales.</p>
+            <ul class="check-list">
+                <li>Introducción clara a IA (sin tecnicismos).</li>
+                <li>Ejemplos aplicados a negocios pequeños.</li>
+                <li>Mini ejercicios para usar IA hoy, no 'algún día'.</li>
+            </ul>
+            <a href="https://intro.mujertech.org/" class="btn btn-primary btn-large" target="_blank" rel="noopener">Ver taller gratuito</a>
         </div>
     </section>
 
-    <footer>
+    <!-- Comentarios -->
+    <section class="comentarios" id="comentarios">
         <div class="container">
-            <p>&copy; 2025 MujerTech. Transformando el futuro del emprendimiento femenino en Latinoamérica.</p>
-            <p>📧 hola@mujertech.co | 📱 WhatsApp: +57 300 000 0000</p>
+            <h2>Lo que dicen otras emprendedoras</h2>
+            <p class="section-intro">Estamos construyendo MujerTech con retroalimentación real — para que se sienta cercano, útil y aplicable desde el día 1.</p>
+            
+            <div class="testimonios-grid">
+                <div class="testimonio-card">
+                    <p class="testimonio-quote">"Debo de confesar que entré al Taller gratuito con mucho miedo, porque la AI me estresa, pero estuvo muy fácil y aprendí y entendí muchas cosas y ya tengo mi certificado"</p>
+                    <p class="testimonio-author">— Rocio García, Veracruz, México · Pensionada</p>
+                </div>
+                <div class="testimonio-card">
+                    <p class="testimonio-quote">"Muy didáctico y sencillo. Recomendado para todas las mujeres que tienen un negocio"</p>
+                    <p class="testimonio-author">— Liliana Perilla, Bogotá, Colombia · Administradora</p>
+                </div>
+                <div class="testimonio-card">
+                    <p class="testimonio-quote">"Me ayudó a entender cómo preguntarle a la AI para que me ayude con todo lo que necesito saber para mi negocio"</p>
+                    <p class="testimonio-author">— Adriana Patiño, Bogotá, Colombia · Emprendedora</p>
+                </div>
+            </div>
+            <p class="cta-small">¿Quieres dar feedback? <a href="https://intro.mujertech.org/" target="_blank" rel="noopener">Prueba el taller gratuito</a> y cuéntanos qué te gustaría aprender después.</p>
+        </div>
+    </section>
+
+    <!-- Próximamente -->
+    <section class="proximamente" id="proximamente">
+        <div class="container">
+            <h2>Esto es solo el comienzo.</h2>
+            <p class="section-intro">MujerTech empieza como bootcamp… y evoluciona hacia herramientas prácticas para tu negocio.</p>
+            
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <span class="vision-badge">Próximamente</span>
+                    <h3>Analiza tus datos con IA</h3>
+                    <p class="vision-example">"Tus jabones de lavanda se venden 3x más los viernes. ¿Quieres promocionarlos ese día?"</p>
+                </div>
+                <div class="vision-card">
+                    <span class="vision-badge">Próximamente</span>
+                    <h3>Revisa la salud de tu negocio</h3>
+                    <p class="vision-example">"Este mes gastaste más en materiales. Considera subir precios o reducir costos."</p>
+                </div>
+                <div class="vision-card">
+                    <span class="vision-badge">Próximamente</span>
+                    <h3>Marketing automático</h3>
+                    <p class="vision-example">"Hola María, vimos que te gustaron nuestros jabones. ¡Tenemos uno nuevo de menta!"</p>
+                </div>
+                <div class="vision-card">
+                    <span class="vision-badge">Próximamente</span>
+                    <h3>Tu asistente virtual 24/7</h3>
+                    <p class="vision-example">"Sí tenemos jabones de lavanda. Cuestan $15.000 y hacemos envíos a toda Colombia."</p>
+                </div>
+                <div class="vision-card">
+                    <span class="vision-badge">Próximamente</span>
+                    <h3>Predice tu próximo mes</h3>
+                    <p class="vision-example">"Basado en tu historial, el próximo mes venderás ~45 jabones. Prepara materiales para 50."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Preguntas frecuentes</h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>¿Necesito saber de tecnología?</summary>
+                    <p>No. Está diseñado para principiantes, explicado en español y con ejemplos prácticos.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>¿Cuánto tiempo me toma?</summary>
+                    <p>Son micro-lecciones; tú marcas el ritmo. Recomendamos avanzar semanalmente.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>¿Necesito computadora?</summary>
+                    <p>Funciona en celular. Si tienes compu, perfecto (pero no es obligatorio).</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final" id="registro">
+        <div class="container">
+            <h2>¿Te interesa MujerTech?</h2>
+            <p>Déjanos tu correo y te avisamos cuando abramos inscripciones.</p>
+            
+            <form class="registro-form" id="registroForm">
+                <input 
+                    type="email" 
+                    id="emailInput" 
+                    placeholder="Tu correo electrónico" 
+                    required
+                >
+                <button type="submit" class="btn btn-primary btn-large">Quiero que me avisen</button>
+                <p class="form-status" id="formStatus"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p class="footer-tagline">MujerTech — IA y negocios para mujeres emprendedoras en Latinoamérica.</p>
         </div>
     </footer>
 
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
