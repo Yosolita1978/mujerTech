@@ -432,6 +432,64 @@ section {
     font-style: italic;
 }
 
+/* ===== Precio ===== */
+.precio {
+    text-align: center;
+}
+
+.precio-card {
+    background: var(--white);
+    max-width: 400px;
+    margin: 0 auto 2rem;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(18, 44, 52, 0.12);
+    border: 3px solid var(--magenta);
+}
+
+.precio-amount {
+    margin-bottom: 1.5rem;
+}
+
+.precio-currency {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.precio-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--jet-black);
+}
+
+.precio-equivalent {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+.precio-includes {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.precio-card .btn {
+    width: 100%;
+}
+
+.precio-note {
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
 /* ===== FAQ ===== */
 .faq-list {
     max-width: 700px;

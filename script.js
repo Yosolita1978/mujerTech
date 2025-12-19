@@ -76,3 +76,28 @@ function showStatus(message, type) {
     formStatus.textContent = message;
     formStatus.className = 'form-status ' + type;
 }
+
+// ===== Dynamic Pricing by Country =====
+const precioAmount = document.getElementById('precioAmount');
+
+if (precioAmount) {
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            const country = data.country_code;
+            
+            if (country === 'CO') {
+                precioAmount.innerHTML = `
+                    <span class="precio-currency">COP</span>
+                    <span class="precio-value">$38,600</span>
+                    <span class="precio-equivalent">(~$10 USD)</span>
+                `;
+            } else if (country === 'MX') {
+                precioAmount.innerHTML = `
+                    <span class="precio-currency">MXN</span>
+                    <span class="precio-value">$180</span>
+                    <span class="precio-equivalent">(~$10 USD)</span>
+                `;
+            }
+        });
+}
