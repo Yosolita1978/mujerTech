@@ -1,0 +1,15 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "const CONFIG = { AIRTABLE_API: '${AIRTABLE_API}' };" > config.js
+    build:
+      commands:
+        - echo "Build complete"
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'
+  cache:
+    paths: []
